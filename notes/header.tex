@@ -1,0 +1,100 @@
+
+\documentclass[11pt]{scrartcl} %Type de doc. %scrartcl
+\usepackage[french,english]{babel}
+\usepackage[utf8]{inputenc} %Caracteres accentués           
+\usepackage[T1]{fontenc} 	%Police accentuée
+\usepackage{lmodern}			%Police vectorielle (haute qualité)
+%\usepackage{vmargin} %Marges normales en A4
+\usepackage{amsmath} %Insertion d'equations
+\usepackage{todonotes}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+\usepackage{amssymb}
+\usepackage{vmargin} 
+
+\usepackage{graphicx} %Images dans le PDF
+\usepackage{float} 		%Flottants : Figures,Tables
+\usepackage{color}		%Utilisation de couleurs
+\definecolor{gris}{gray}{0.5}
+\usepackage{eurosym}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+% \usepackage{breakurl}
+\usepackage{wrapfig}
+\usepackage{multirow} 
+\usepackage{rotating}
+\usepackage[small,bf]{caption}
+\usepackage{textcomp}
+
+\usepackage{subfig} 
+
+\usepackage{amsthm}
+\usepackage{pgf}
+
+\usepackage{epstopdf}
+\usepackage{attachfile} 
+\usepackage{longtable}
+
+\renewcommand*{\thefootnote}{$\langle\arabic{footnote}\rangle$}
+
+\theoremstyle{definition}
+\newtheorem{example}{{\bf Example}}[part]
+\newtheorem{theorem}[example]{{\bf Theorem}}
+\newtheorem{property}[example]{{\bf Property}}
+\newtheorem{definition}[example]{{\bf Definition}}
+\newtheorem{remark}[example]{{\bf Remark}}
+\newtheorem{remarks}[example]{{\bf Remarks}}
+\newtheorem{lemma}[example]{{\bf Lemma}}
+\newtheorem{hypothesis}[example]{{\bf Hypothesis}}
+\newtheorem{exercise}{{\bf Exercise}}[part]
+
+\setkomafont{part}{\LARGE}
+\setkomafont{section}{\Large}
+\setkomafont{subsection}{\large}
+\setkomafont{subsubsection}{\normalsize}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\allowdisplaybreaks[3] % ou x prend une valeur entière comprise entre 0 et 4; Plus x est gd, plus le compilateur accepte les coupures sur deux pages dans une formule.
+% permet que les align puissent se prolonger sur pls pages
+
+%========================================
+\usepackage{listings}	%Inclusion de code-source
+\lstset{							%Paramètres généraux pour les inclusions de code
+	flexiblecolumns=true,
+	numbers=left,
+	numberstyle=\ttfamily\tiny,
+	keywordstyle=\textcolor{blue},
+	stringstyle=\textcolor{red},
+	commentstyle=\textcolor{green},
+	breaklines=true,
+	extendedchars=true,
+	basicstyle=\ttfamily\scriptsize,
+	showstringspaces=false,
+	captionpos=b	
+	}
+\renewcommand{\lstlistingname}{\textsc{Code}}	%Remplacer 'Listing' par 'Code' dans les légendes
+%\usepackage[french,boxed,linesnumbered]{algorithm2e}	%Package algorithme avec options
+\usepackage[english,algoruled, linesnumbered]{algorithm2e}	%Package algorithme avec options
+
+\lstset{inputencoding=Latin1}
+
+\hypersetup{
+colorlinks,%
+citecolor=black,%
+filecolor=black,%
+linkcolor=black,%
+urlcolor=black
+} 
+
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leo}
+
+
