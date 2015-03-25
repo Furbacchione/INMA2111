@@ -1,0 +1,97 @@
+\part{Random algorithms}
+
+First, let's do a few exercices in probability.
+
+
+
+\section{The marriage/secretary/harem/... problem}
+$n$ candidates of different quality apply for an open position. They are sent in random order. Every time you interview a candidate who proves better than any other previous one, you hire him/her.
+
+\subsection{How many persons will you hire on average?}
+Say you interview them 
+\begin{itemize}
+\item in increasing order $q_1 < q_2 < \ldots < q_n$ ($1,2, \ldots, n$ denote the order of the interviews) $\Rightarrow n$ hires;
+\item in decreasing order $q_1 > q_2 > \ldots > q_n \Rightarrow 1$ hire;
+\item in random order $\Rightarrow$ something in between.
+\end{itemize}
+To find to number of persons we will hire on average, we will use the powerful technique of \textit{indicator variable}. Let
+\begin{align*}
+X_i &=
+  \left\{
+      \begin{aligned}
+      	1 &\text{ if person $i$ is hired} \\
+        0 &\text{ it not }
+      \end{aligned}
+    \right.\\
+\mathbf{E}[X_i] &= \text{Prob[person $i$ is hired}] &\text{ fondamental property of indicator variable}
+\end{align*}
+We want to find
+\begin{align*}
+\mathbf{E}[X] &=  \mathbf{E}[X_1+X_2+\ldots+X_n] & \\
+&=  \mathbf{E}[X_1] + \mathbf{E}[X_2] + \ldots +\mathbf{E}[X_n]  &\text{since the expectation is linear}\\
+&= \sum_{i=1}^n \text{Prob[$i$ is hired]} &\\
+&= \sum_{i=1}^n \frac{1}{i} &\text{because the best among $1,2,\ldots,i$ is $i$ with probability $\frac{1}{i}$}\\
+&\approxeq \int_1^n \frac{1}{i}  \, \mathrm{d}i. &\text{continuous problem}\\
+&= \ln n. &
+\end{align*}
+
+\subsection{Variant}
+This time, we hire only 1 person and we want to maximize the probability to pick the best among the $n$ candidates (as soon as we interview someone, we need to say yes or no).
+
+\subsubsection{Algorithm}
+\begin{itemize}
+\item Don't hire the first $k-1$ candidates (observation phase).
+\item Hire the first among the candidates $k, k+1, \ldots, n$ to be the best interviewed so far.
+\end{itemize}
+\subsubsection{What is the best $k$?}
+\begin{align*}
+\text{Probability of success} &= \sum_{i=k}^n \text{Prob[$i$ is hired and is the best]}\\
+&= \sum_{i=k}^n  \text{Proba[i is the best]} \text{Prob[i is hired | i is the best]}\\
+&= \sum_{i=k}^n  \frac{1}{n} \frac{k-1}{i-1}\\
+&\approxeq \frac{k}{n} \int_{k-1}^{n-1} \frac{1}{x} \, \mathrm{d}x.\\
+&= \frac{k}{n} (\ln n - \ln k)\\
+&= \frac{\ln \frac{n}{k}}{\frac{n}{k}}\\
+&= \frac{\ln y}{y} \text{for $y = \frac{n}{k} \geq 1$}
+\end{align*}
+To find this, we need to notice that if the second best among $1,\ldots,i$ is in 
+\begin{itemize}
+\item $1,\ldots, k-1$ then $i$ is picked;
+\item $k,\ldots, i-1$ then $i$ is not picked.
+\end{itemize}
+So, $i$ is picked with probability $\frac{k-1}{i-1}$.
+
+Then, $y$ is optimal for 
+\begin{align*}
+\frac{\mathrm{d}}{\mathrm{d}y} \left(\frac{\ln y}{y} \right) &= 0\\
+\frac{1- \ln y}{y^2} &= 0\\
+\Rightarrow \ln y &= 1\\
+y &= e
+\end{align*}
+So $k = \frac{n}{e} \approxeq 0.37n$ is optimal and the corresponding probability of success is $\frac{\ln \frac{n}{k}}{\frac{n}{k}} = \frac{1}{e} \approxeq 0.37$.
+
+
+
+\section{The birthday paradox}
+How many people do you need to gather so that two of them will have the same birthday with fair chances? We will solve this problem with indicator variables.
+\begin{align*}
+X_{ij} &=
+  \left\{
+      \begin{aligned}
+      	1 &\text{ if $i$ and $j$ have same birthday} \\
+        0 &\text{ it not }
+      \end{aligned}
+    \right.\\
+\mathbf{E}[X_{ij}] &= \frac{1}{t} \text{ where $t = 365$}\\
+\sum_{pairs \{i,j\}} X_{i,j} &= X\\
+&= \text{\# of coincidences}\\
+&= \text{\# pairs of people with same birthday}\\
+\mathbf{E}[X] &=  \mathbf{E}[\sum_{i,j} X_{i,j}] \\
+&= \sum_{i,j}  \mathbf{E}[X_{i,j}] \\
+&= \frac{n(n-1)}{2} \frac{1}{t} \approxeq \frac{n^2}{2t} \text{ for $n$ persons}
+\end{align*}
+So, if $n = \sqrt{2t}$, then $\mathbf{E}[X] \approxeq 1$, i.e. there exist a fair chance to observe a coincidence. If $t = 365$, $n = \sqrt{2*365} = 25$. Therefore already with $25$ people there is a very good chance that two people were born on the same day, whereas we would expect that more people would be needed.
+
+
+
+\section{Compute $\pi$}
+Let's see an (inefficient) method to compute $\pi$.
