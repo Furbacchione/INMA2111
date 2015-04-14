@@ -1,13 +1,15 @@
-\part{Random algorithms}
+\part*{TEMPORARY - CM7}
+
+\section{Random algorithms}
 
 First, let's do a few exercices in probability.
 
 
 
-\section{The marriage/secretary/harem/... problem}
+\subsection{The marriage/secretary/harem/... problem}
 $n$ candidates of different quality apply for an open position. They are sent in random order. Every time you interview a candidate who proves better than any other previous one, you hire him/her.
 
-\subsection{How many persons will you hire on average?}
+\subsubsection{How many persons will you hire on average?}
 Say you interview them 
 \begin{itemize}
 \item in increasing order $q_1 < q_2 < \ldots < q_n$ ($1,2, \ldots, n$ denote the order of the interviews) $\Rightarrow n$ hires;
@@ -35,10 +37,10 @@ We want to find
 &= \ln n. &
 \end{align*}
 
-\subsection{Variant}
+\subsubsection{Variant}
 This time, we hire only 1 person and we want to maximize the probability to pick the best among the $n$ candidates (as soon as we interview someone, we need to say yes or no).
 
-\subsubsection{Algorithm}
+\paragraph{Algorithm}
 \begin{itemize}
 \item Don't hire the first $k-1$ candidates (observation phase).
 \item Hire the first among the candidates $k, k+1, \ldots, n$ to be the best interviewed so far.
@@ -71,7 +73,7 @@ So $k = \frac{n}{e} \approxeq 0.37n$ is optimal and the corresponding probabilit
 
 
 
-\section{The birthday paradox}
+\subsection{The birthday paradox}
 How many people do you need to gather so that two of them will have the same birthday with fair chances? We will solve this problem with indicator variables.
 \begin{align*}
 X_{ij} &=
@@ -93,5 +95,5 @@ So, if $n = \sqrt{2t}$, then $\mathbf{E}[X] \approxeq 1$, i.e. there exist a fai
 
 
 
-\section{Compute $\pi$}
+\subsection{Compute $\pi$}
 Let's see an (inefficient) method to compute $\pi$.

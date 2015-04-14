@@ -1,8 +1,8 @@
+\part*{TEMPORARY - CM1}
 
+\setcounter{section}{-1}
 
-\part*{Reminders : Asymptotic notation}
-
-\paragraph{}
+\section{Reminders : Asymptotic notation}
 
 Let 
 $ \left\{
@@ -18,43 +18,34 @@ g :& \mathbb{N} \rightarrow \mathbb{R}^+
 	$f \in \Theta(g)$ $\begin{array}{l} 
 	   \Leftrightarrow f \in \mathcal{O}(g)  \text{ and } g \in \mathcal{O}(f) \\
 	\Leftrightarrow  \exists n_0, c_1, c_2 : \forall n\geq n_0, c_1 \cdot g(n)\leq f(n) \leq c_2 \cdot g(n) 
-	\end{array}$
-		
+	\end{array}$	
 	($f$ and $g$ are equivalent in complexity)
-
 \item $f \in o(g) \Leftrightarrow f \in \mathcal(O)(g)$ but $f \notin \Theta(g)$
 \item  $f \in \Omega(g) \Leftrightarrow g \in \mathcal{O}(f)$
 \item $f \in \omega(g) \Leftrightarrow g \in o(f)$
 \end{itemize}
 
-
 \begin{example}
-
 \begin{align*} 
 	   n^2 & = \mathcal{O}(n^2) &\\
 		 & = o(n^3) &\\
 		 & = \Theta \left(\frac{n (n-1)}{2}\right) &\\
 		& = \Omega (n \log (n))& 
 	\end{align*}
-
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Sorting algorithms}
 
-\part{Sorting algorithms}
-
-\paragraph{}
 We will start with illustrating some ideas on sorting algorithms. The sorting problem may be defined by its input and output. Hence our goal is to find some algorithms such that: \newline
 
 \textbf{Input :} an array $T = \begin{pmatrix}T(1) & \ldots & T(n) \end{pmatrix}$. 
 
 \textbf{Output :} the array is sorted in increasing order. 
 
+\subsection{Selection Sort}
 
-\section{Selection Sort}
-
-\paragraph{}
 First, we consider a naïve algorithm: \textbf{Selection Sort}. This first algorithm can be formulated as follows:
 
 \begin{itemize}
@@ -64,7 +55,7 @@ First, we consider a naïve algorithm: \textbf{Selection Sort}. This first algor
 	\item Repeat this procedure iteratively: Find the smallest entry of the rest, put it in the second position, etc
 \end{itemize}
 
-What about the time complexity of this algorithm? \\
+What about the time complexity of this algorithm?
 \begin{align*}
 \text{Time } &= \Theta(n) + \Theta(n-1) + \ldots + \Theta(1) \\
 & = \Theta(n^2)
@@ -74,20 +65,17 @@ What about the time complexity of this algorithm? \\
 The complexity of this algorithm is $\Theta(n^2)$ for each instance. We have Worst case $=$ Best case $=$ Average case time complexity $= \Theta(n^2)$.
 \end{remark}
 
-\section{Insertion Sort}
+\subsection{Insertion Sort}
 \begin{itemize}
 \renewcommand{\labelitemi}{$\bullet$}
 	\item \textbf{For} $i = 2$ to $n$ \hspace{1cm} \% $T(1), \ldots , T(i-1)$ are already sorted = "Loop-invariant".
-	
-	Shift $T(i)$ to the left by recursive swaps until well paced.
+  \item Shift $T(i)$ to the left by recursive swaps until well paced.
 \end{itemize}
 
 \begin{example}
 We can consider a small exemple, the first four elements of the array being sorted: 
-
 \tikzstyle{block} = [rectangle, draw, 
     text width=0.8cm, text centered]
-		
 \begin{tikzpicture}[node distance = 1cm, auto]
     % Place nodes
     \node [block] (one) {1};
@@ -98,14 +86,11 @@ We can consider a small exemple, the first four elements of the array being sort
     \node [block, right of=five] (six) {8};
     \node [block, right of=six] (seven) {0};
 		\node[rectangle, below of=five] (ind) {i=5};
-
     % Draw edges
 		\draw[->,distance =8pt, thick,draw=blue] (five.north)to[bend right](four.north);
 		\draw[->,distance =8pt,thick, draw=blue] (four.north)to[bend right](three.north);
 		\draw[->,thick] (ind.north)to(five.south);
-  
 \end{tikzpicture}
-
 \end{example}
 
 Regarding the time complexity, we have: 
@@ -118,13 +103,14 @@ Regarding the time complexity, we have:
 		\mathbb{E}[Time] & = \mathbb{E}[\sum_{i=2}^n \Theta(t_i)] \hspace{1cm} \text{  With $t_i$ the number of swaps needed for $T(i)$.}& \\
 		& = \Theta \left( \sum_{i=2}^n \mathbb{E}[t_i]\right)  \hspace{1cm} \text{ By linearity of $\mathbb{E}$.}&\\
 		& = \Theta \left( \sum_{i=2}^n \frac{i}{2}\right) & \\
-		& = \Theta(n^2)& \\
+		& = \Theta(n^2)
 	\end{flalign*}
 \end{itemize}
 
-In \emph{some} applications, the relevant probability distribution is not uniform but biased towards almost-sorted instances.   \newline $\Rightarrow$ Average-case can be $o(n^2)$. 
+In \emph{some} applications, the relevant probability distribution is not uniform but biased towards almost-sorted instances.   \newline 
+$\Rightarrow$ Average-case can be $o(n^2)$. 
 
-\section{Quick Sort}
+\subsection{Quick Sort}
 This third algorithm is based on the idea of "Divide-and-Conquer" which solves the sorting problem in the following manner:
 
 \begin{itemize}
@@ -150,9 +136,8 @@ In particular, in this case:
 	(The pivot being in $T_{low}$).
 \end{itemize}
 
-
 About the complexity of this algorithm:
- \begin{itemize}
+\begin{itemize}
 \renewcommand{\labelitemi}{$\bullet$}
 \item Worst case: when instance is already sorted ! \newline
 In this case: $\left.
@@ -168,10 +153,11 @@ t_n & = t_1 + t_{n-1}+ \Theta(n)\\
  & = t_1 + \left( t_1 + t_{n-2} + \Theta(n-1)\right)+ \Theta(n)\\
 & = t_1 + \left( t_1 + (t_1 + t_{n-3}+ \Theta(n-2)) + \Theta(n-1)\right)+ \Theta(n)\\
 & = \ldots \\
-& = n \cdot t_1 + \Theta(n^2) = \Theta(n^2) \\
+& = n \cdot t_1 + \Theta(n^2) = \Theta(n^2)
 \end{align*}
 
-\item Average-case complexity: \begin{align}
+\item Average-case complexity: 
+\begin{align}
 t_n & = t_{\frac{n}{2}}+ t_{\frac{n}{2}}+ \Theta(n) \label{eq:quickSort_average} \\
 & = 2 \cdot t_{\frac{n}{2}} + \Theta(n)  \notag \\
 & = 2 \left( 2 \cdot t_{\frac{n}{4}} + \Theta(\frac{n}{2})\right) + \Theta(n)  \notag \\
@@ -180,7 +166,6 @@ t_n & = t_{\frac{n}{2}}+ t_{\frac{n}{2}}+ \Theta(n) \label{eq:quickSort_average}
 & = 2^{\log_2(n)} \cdot t_1 + \Theta(n \log_2(n))  \notag \\
 & = \Theta(n \log_2(n)) \notag
 \end{align}
-
 \end{itemize}
 
 \begin{remark}
@@ -191,28 +176,24 @@ We will denote $\log_2$ by $\log$, since $\log_a(n)\in \Theta(\log_b(n))$, $\for
 In $t_n = t_{\frac{n}{2}}+ t_{\frac{n}{2}} + \Theta(n)$,
 \begin{align*}
 \mathbb{E}[t_n] & = \mathbb{E}[t_{|T_{low}|}]+ \mathbb{E}[t_{|T_{high}|}] + \Theta(n) \text{ would be more correct.} & \\
-& \cong t_{\mathbb{E}[|T_{low}|]} + t_{\mathbb{E}[|T_{high}|]}  + \Theta(n) \text{ : in fact OK.} & \\
+& \cong t_{\mathbb{E}[|T_{low}|]} + t_{\mathbb{E}[|T_{high}|]}  + \Theta(n) \text{ : in fact OK.}
 \end{align*}
-
 \end{remark}
 
 Now, what if you don't know that your instances are uniformly distributed? This leads to the next algorithm.
 
-\section{Randomized Quick Sort}
-\paragraph{}
+\subsection{Randomized Quick Sort}
 Here, the first step of the algorithm is to shuffle entries randomly. It is equivalent to picking a random entry as pivot, instead of $T(1)$.
 
 Now on any instance, Randomized Quick Sort runs in expected time $\Theta(n \log(n))$ $\Rightarrow$ Worst-case expected time of this random algorithm is also $\Theta(n \log(n))$. 
 
 One advantage of randomization: Robin Hood effect, i.e. you take from rich instances and give to the poor. Now, everybody can be unlucky from time to time but lucky most of the time. 
 
-\paragraph{}
 Can we reach worst-case complexity $\mathcal{O}(n \log(n))$ deterministically? 
 \newline The answer is yes, as we will see in the next section (Merge Sort). 
 
-\section{Merge Sort}
+\subsection{Merge Sort}
 
-\paragraph{}
 This algorithm is also based on Divide-and-Conquer approach. 
 
 \begin{itemize}
@@ -230,10 +211,9 @@ This algorithm is also based on Divide-and-Conquer approach.
 Time of merge is $\Theta(n)$, so we have the recurrence equation: 
 \begin{align*}
 t_n & = 2 \cdot t_{\lceil \frac{n}{2}\rceil}+ \Theta(n) \\
-& = \Theta(n \log(n))  \text{ (see equation~\eqref{eq:quickSort_average})} \\
+& = \Theta(n \log(n))  \text{ (see equation~\eqref{eq:quickSort_average})}
 \end{align*}
 
-\paragraph{}
 Which one to use?
 \begin{itemize}
 \renewcommand{\labelitemi}{$\bullet$}

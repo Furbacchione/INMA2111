@@ -1,5 +1,8 @@
 
 \documentclass[11pt]{scrartcl} %Type de doc. %scrartcl
+
+
+% standard
 \usepackage[french,english]{babel}
 \usepackage[utf8]{inputenc} %Caracteres accentués           
 \usepackage[T1]{fontenc} 	%Police accentuée
@@ -40,7 +43,7 @@
 \renewcommand*{\thefootnote}{$\langle\arabic{footnote}\rangle$}
 
 \theoremstyle{definition}
-\newtheorem{example}{{\bf Example}}[part]
+\newtheorem{example}{{\bf Example}}[section]
 \newtheorem{theorem}[example]{{\bf Theorem}}
 \newtheorem{property}[example]{{\bf Property}}
 \newtheorem{definition}[example]{{\bf Definition}}
@@ -48,7 +51,7 @@
 \newtheorem{remarks}[example]{{\bf Remarks}}
 \newtheorem{lemma}[example]{{\bf Lemma}}
 \newtheorem{hypothesis}[example]{{\bf Hypothesis}}
-\newtheorem{exercise}{{\bf Exercise}}[part]
+\newtheorem{exercise}{{\bf Exercise}}[section]
 
 \setkomafont{part}{\LARGE}
 \setkomafont{section}{\Large}
@@ -64,18 +67,45 @@
 %========================================
 \usepackage{listings}	%Inclusion de code-source
 \lstset{							%Paramètres généraux pour les inclusions de code
-	flexiblecolumns=true,
-	numbers=left,
-	numberstyle=\ttfamily\tiny,
-	keywordstyle=\textcolor{blue},
-	stringstyle=\textcolor{red},
-	commentstyle=\textcolor{green},
-	breaklines=true,
-	extendedchars=true,
-	basicstyle=\ttfamily\scriptsize,
-	showstringspaces=false,
-	captionpos=b	
+	%% From CM1
+	% flexiblecolumns=true,
+	%numbers=left,
+	%numberstyle=\ttfamily\tiny,
+	%keywordstyle=\textcolor{blue},
+	%stringstyle=\textcolor{red},
+	%commentstyle=\textcolor{green},
+	%breaklines=true,
+	%extendedchars=true,
+	%basicstyle=\ttfamily\scriptsize,
+	%showstringspaces=false,
+	%captionpos=b	
+% part Hélène	
+	  language=matlab,
+    basicstyle=\ttfamily\small,
+    aboveskip={1.0\baselineskip},
+    belowskip={1.0\baselineskip},
+    columns=fixed,
+    extendedchars=true,
+    breaklines=true,
+    tabsize=4,
+    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+    frame=lines,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    keywordstyle=\color[rgb]{0.627,0.126,0.941},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{01,0,0},
+    numbers=left,
+    numberstyle=\small,
+    stepnumber=1,
+    numbersep=10pt,
+    captionpos=t,
+    escapeinside={\%*}{*)}
 	}
+	
+	
+	
 \renewcommand{\lstlistingname}{\textsc{Code}}	%Remplacer 'Listing' par 'Code' dans les légendes
 %\usepackage[french,boxed,linesnumbered]{algorithm2e}	%Package algorithme avec options
 \usepackage[english,algoruled, linesnumbered]{algorithm2e}	%Package algorithme avec options
@@ -97,4 +127,24 @@ urlcolor=black
 %% Now actually use the newly defined style.
 \urlstyle{leo}
 
+
+% from Hélène
+
+
+\usepackage{layout}
+% \usepackage{geometry}
+\usepackage{array}
+\usepackage{fancyvrb}
+\usepackage[parfill]{parskip} % espace apres paragraph
+\usepackage{fourier}
+\usepackage{pdfpages}
+
+\newcommand{\QED}{\begin{flushright} QED \end{flushright}}
+\newcommand{\ent}[1]{\lfloor #1 \rfloor}
+\newcommand{\tup}[2]{\left( \begin{matrix} #1\\ #2\end{matrix} \right)}
+
+
+% from CM5
+\usepackage{varioref}
+\setlength\parindent{0pt}
 
