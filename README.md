@@ -2,7 +2,7 @@
 
 Wiki: https://github.com/Furbacchione/INMA2111/wiki
 
-From Prof Delvelnne:
+From Prof Delvenne:
 
 "Regarding notes: as suggested, I offer 0.5 bonus point on the final grade for half a course written in LaTeX. So pair up for a full 2-hour course."
 
