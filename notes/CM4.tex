@@ -128,3 +128,72 @@ t_n &\leq t_{\frac{n}{5}} + t_{\frac{7n}{10}} + an\\
 &\leq cn &\text{if } a\leq \frac{1}{10}c
 \end{align*}
 \QED
+
+
+
+    \subsection{Dynamic programing : Computation of combinatorial value}
+
+
+
+The goal is to compute the following combinatorial value  $$\tup{n}{k} = \frac{n!}{k!(n-k)!}$$
+
+By definition, it can be computed by the following recurrence equation :
+
+\begin{align*}
+\tup{n}{k} &= \tup{n-1}{k-1} + \tup{n-1}{k} & \text{if } 0 < k<n\\
+&=1 & \text{if } k=0 or n\\
+&=0 & \text{otherwise}
+\end{align*}
+
+        
+        
+        \subsubsection{Naive way : simple recursive algorithm}
+
+
+
+A way to compute $\tup{n}{k}$ would be to follow the recurrence equation by using the following algorithm (List.\ref{list:c4:naive}).
+
+\begin{lstlisting}[label={list:c4:naive},caption=Pseudo-code of the naive algorithm for the combinatorial]
+C(n,k) :
+    if (0 < k < n)
+        return (C(n-1),k-1) + C(n-1,k))
+    else if (k == 1 || k == n)
+        return 1
+    else
+        return 0
+\end{lstlisting}
+
+It can be easily seen that this will lead to an enormous amount of recursive calls. The time complexity is thus a large number. But hopefully for us, there is redundancy in the computation! Some terms are computed many times. 
+
+However, as the results are used directly in the computation, the space complexity is $\mathcal{O}(1)$.
+
+
+
+        \subsubsection{Better way using Pascal's triangle : bottom up approach}
+
+
+
+
+A better way is to store the intermediate result into a table : Pascal's triangle. We can build this table row by row.
+
+As the computation of one term (knowing the recursive values) is done in $\Theta (1)$, the time complexity to fill the whole table is $\Theta (nk)$.
+
+The space complexity is $\Theta (nk)$ if we keep all the intermediate values, but in fact we only need to keep one line at the same time, this reduce the space complexity to $\Theta (k)$.
+
+If we compare the naive way with this one, we can see that the time complexity was improved at the expense of the space complexity. This effect is called the time-space trade-off.
+
+This way of solving all the subproblem from the smallest to the final value (the one needed) is called the bottom up approach.
+
+
+
+        \subsubsection{Third way with memoization : top down approach} 
+
+
+
+The top down approach consist of taking the initial recursive algorithm and add a means of storing intermediate results.
+
+We can for example use a table (initially set to $Tab(n,k) = -1 \ \forall n,k$) and take the initial algo but before the computation, check if the result is already in the table. 
+
+This is called recursive algorithm with memory function (or with memoization\footnote{if you doubt about the name, check out \url{http://en.wikipedia.org/wiki/Memoization}}). This technique can be useful for problems where we do not know in advance which sub-problems are relevant and need to be computed because it compute exactly what's needed.
+
+The time complexity will be the same as the bottom up approach ($\Theta (nk)$). But as we keep all intermediate result, we have a space complexity of $\Theta (nk)$. 
