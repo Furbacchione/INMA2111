@@ -1,0 +1,44 @@
+\documentclass[a4paper, 11pt, onecolumn, oneside, titlepage]{article}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{myStyle}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\lstdefinestyle{numbers}{
+  numbers=left,         % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=7pt,          % how far the line-numbers are from the code
+  numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+  stepnumber=1,           % the step between two line-numbers. If it's 1, each line will be numbered
+}
+\lstdefinestyle{MyFrame}{
+  backgroundcolor=\color{white},
+  frame=shadowbox,        % adds a frame around the code
+  framesep=3pt,
+  captionpos=b,         % sets the caption-position to bottom
+}
+\lstdefinestyle{Classic}{
+  basicstyle=\footnotesize\ttfamily,  % the size of the fonts that are used for the code
+  breaklines=true,          % sets automatic line breaking
+  keepspaces=true,          % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  showspaces=false,         % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,       % underline spaces within strings only
+  showtabs=false,           % show tabs within strings adding particular underscores
+  tabsize=4,              % sets default tabsize to 2 spaces
+  title=\lstname            % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\lstdefinestyle{Pseudo}{
+	style = Classic,
+	style = MyFrame,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\color{blue}, 
+	morekeywords={While, not, add, in},
+}
+
+\begin{document}
+
+\input{lecture6}
+
+\end{document}

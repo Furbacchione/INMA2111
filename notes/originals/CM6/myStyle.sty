@@ -1,0 +1,185 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{memoire}[27/08/2014 Feuille de style memoire V2.1, Vanderlinden Quentin]
+% ------------------------------
+% HISTORIQUE MODIFICATIONS
+% ------------------------------
+%
+% V2.1 : 27/08/2014
+%   mise en place du package
+%
+% ------------------------------
+
+
+% ------------------------------
+% PACKAGES DE BASE
+% ------------------------------
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage[top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry}
+\RequirePackage{etex}
+\RequirePackage[english]{babel}
+
+% ------------------------------
+% MATHS
+% ------------------------------
+\RequirePackage{mathtools}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{siunitx}
+\RequirePackage{esint}
+\RequirePackage{mathrsfs}
+\RequirePackage{dsfont}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollaire}{Corollary}
+\newtheorem{lemme}[theorem]{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\DeclareMathOperator*{\argmin}{\arg\!min}
+\DeclareMathOperator*{\argmax}{\arg\!max}
+
+% ------------------------------
+% TABLEAUX
+% ------------------------------
+\RequirePackage{array}
+\RequirePackage{booktabs}
+
+% ------------------------------
+% COLOR
+% ------------------------------
+\RequirePackage{color}
+\RequirePackage{xcolor,colortbl}
+\definecolor{navy}{RGB}{0,0,128}
+
+% ------------------------------
+% PERSONNALISATION
+% ------------------------------
+\RequirePackage{etoolbox}
+%\RequirePackage{cleveref}
+\RequirePackage[l2tabu, orthodox]{nag}
+\RequirePackage{pdfpages}
+\RequirePackage[textwidth=2.3cm]{todonotes}
+\RequirePackage[colorlinks=true, urlcolor=myColor,linkcolor=myColor,citecolor=navy]{hyperref}
+\RequirePackage{listings}
+\RequirePackage{graphicx}
+\RequirePackage{subcaption}
+\RequirePackage{fancybox}
+\RequirePackage{epstopdf}
+\RequirePackage{tikz}
+\RequirePackage{titlesec}
+\RequirePackage{enumerate}
+\RequirePackage{bm}
+\RequirePackage[boxruled,linesnumbered]{algorithm2e}
+\RequirePackage{tcolorbox}
+
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+
+\titleformat{\section}         % Customize the \section command 
+    {\color{myColor} \large\bfseries}       % Format
+    {\thesection}         % Label
+    {0,5cm}     % Separator
+    {}          % Before
+    [\titlerule \color{black}]          % After
+
+  \titleformat{\subsection}         % Customize the \subsection command 
+    {\color{myColor} \bfseries}       % Format
+    {\thesubsection}         % Label
+    {0,25cm}     % Separator
+    {}          % Before
+    [\color{black}]          % After
+
+% Incompatible avec classe memoir
+%\RequirePackage{subfigure}
+%\RequirePackage{fancyhdr}
+
+%\definecolor{myColor}{rgb}{0,0.38671875,0.64453125}
+\definecolor{myColor}{rgb}{0,0.3,0.7}
+
+% ------------------------------
+% STYLE LISTINGS
+% ------------------------------
+\lstdefinestyle{numbers}{
+  numbers=left,         % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=7pt,          % how far the line-numbers are from the code
+  numberstyle=\tiny\color{black}, % the style that is used for the line-numbers
+  stepnumber=1,           % the step between two line-numbers. If it's 1, each line will be numbered
+}
+\lstdefinestyle{MyFrame}{
+  backgroundcolor=\color{white},
+  frame=shadowbox,        % adds a frame around the code
+  framesep=3pt,
+  captionpos=b,         % sets the caption-position to bottom
+}
+\lstdefinestyle{Classic}{
+  basicstyle=\footnotesize\ttfamily,  % the size of the fonts that are used for the code
+  breaklines=true,          % sets automatic line breaking
+  keepspaces=true,          % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  showspaces=false,         % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,       % underline spaces within strings only
+  showtabs=false,           % show tabs within strings adding particular underscores
+  tabsize=4,              % sets default tabsize to 2 spaces
+  title=\lstname            % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+
+% ------------------------------
+% COMANDES PERSO
+% ------------------------------
+\newcommand{\mybox}[3]{
+  \begin{center}
+    \boxput*(0,1){\colorbox{white}{\textbf{#2}}}{
+      \setlength{\fboxsep}{15pt}
+      \fbox{
+        \begin{minipage}{#1}
+  	     #3
+        \end{minipage}}}
+  \end{center}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.3cm}
+
+\def\teacherField{Teaching staff}
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 2pt\hfill \kern \z@}
+\def\maketitle{%
+  \thispagestyle{empty}%
+  \begin{center}\leavevmode
+    \normalfont
+    \par
+     \vskip 1cm
+    \centering          
+    \includegraphics[height=60mm]{SETUP/IMG/pagegarde.eps}
+    \par
+     \vskip 2.5cm
+    \color{myColor}
+    \thickhrulefill
+    \begin{center}
+    \LARGE{\textbf{\@title}}
+    \end{center}
+    \thickhrulefill
+    \par
+    \vskip 1.5cm
+    \par
+    \color{black}
+    \begin{center}
+    {\@author}
+    \end{center}
+    \vskip 1cm
+    \begin{center}
+    \color{myColor}
+    {\textbf{\teacherField}} \color{black} \\
+  \teachers
+  \end{center}
+  \vskip 1cm
+   {\place, \@date}
+   \vfill
+  \end{center}
+  }
+
+\endinput

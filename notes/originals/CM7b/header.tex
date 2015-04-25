@@ -1,16 +1,10 @@
 
 \documentclass[11pt]{scrartcl} %Type de doc. %scrartcl
-
-% TEMPORARY
-\usepackage{soul}
-
-
-% standard
 \usepackage[french,english]{babel}
 \usepackage[utf8]{inputenc} %Caracteres accentués           
 \usepackage[T1]{fontenc} 	%Police accentuée
 \usepackage{lmodern}			%Police vectorielle (haute qualité)
-% \usepackage{vmargin} %Marges normales en A4
+%\usepackage{vmargin} %Marges normales en A4
 \usepackage{amsmath} %Insertion d'equations
 \usepackage{todonotes}
 
@@ -46,7 +40,7 @@
 \renewcommand*{\thefootnote}{$\langle\arabic{footnote}\rangle$}
 
 \theoremstyle{definition}
-\newtheorem{example}{{\bf Example}}[section]
+\newtheorem{example}{{\bf Example}}[part]
 \newtheorem{theorem}[example]{{\bf Theorem}}
 \newtheorem{property}[example]{{\bf Property}}
 \newtheorem{definition}[example]{{\bf Definition}}
@@ -54,7 +48,7 @@
 \newtheorem{remarks}[example]{{\bf Remarks}}
 \newtheorem{lemma}[example]{{\bf Lemma}}
 \newtheorem{hypothesis}[example]{{\bf Hypothesis}}
-\newtheorem{exercise}{{\bf Exercise}}[section]
+\newtheorem{exercise}{{\bf Exercise}}[part]
 
 \setkomafont{part}{\LARGE}
 \setkomafont{section}{\Large}
@@ -64,59 +58,29 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\R}{\mathbb{R}}
-
 \allowdisplaybreaks[3] % ou x prend une valeur entière comprise entre 0 et 4; Plus x est gd, plus le compilateur accepte les coupures sur deux pages dans une formule.
 % permet que les align puissent se prolonger sur pls pages
 
 %========================================
 \usepackage{listings}	%Inclusion de code-source
 \lstset{							%Paramètres généraux pour les inclusions de code
-	%% From CM1
-	 %flexiblecolumns=true,
-	%numbers=left,
-	%numberstyle=\ttfamily\tiny,
-	%keywordstyle=\textcolor{blue},
-	%stringstyle=\textcolor{red},
-	%commentstyle=\textcolor{green},
-	%breaklines=true,
-	%extendedchars=true,
-	%basicstyle=\ttfamily\scriptsize,
-	%showstringspaces=false,
-	%captionpos=b	
-% part Hélène	
-	  language=matlab,
-    basicstyle=\ttfamily\small,
-    aboveskip={1.0\baselineskip},
-    belowskip={1.0\baselineskip},
-    columns=fixed,
-    extendedchars=true,
-    breaklines=true,
-    tabsize=4,
-    prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-    frame=lines,
-    showtabs=false,
-    showspaces=false,
-    showstringspaces=false,
-    keywordstyle=\color[rgb]{0.627,0.126,0.941},
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\color[rgb]{01,0,0},
-    numbers=left,
-    numberstyle=\small,
-    stepnumber=1,
-    numbersep=10pt,
-    captionpos=t,
-    escapeinside={\%*}{*)}
+	flexiblecolumns=true,
+	numbers=left,
+	numberstyle=\ttfamily\tiny,
+	keywordstyle=\textcolor{blue},
+	stringstyle=\textcolor{red},
+	commentstyle=\textcolor{green},
+	breaklines=true,
+	extendedchars=true,
+	basicstyle=\ttfamily\scriptsize,
+	showstringspaces=false,
+	captionpos=b	
 	}
-	
-	
-	
 \renewcommand{\lstlistingname}{\textsc{Code}}	%Remplacer 'Listing' par 'Code' dans les légendes
 %\usepackage[french,boxed,linesnumbered]{algorithm2e}	%Package algorithme avec options
 \usepackage[english,algoruled, linesnumbered]{algorithm2e}	%Package algorithme avec options
 
-% \lstset{inputencoding=Latin1}
+\lstset{inputencoding=Latin1}
 
 \hypersetup{
 colorlinks,%
@@ -134,31 +98,3 @@ urlcolor=black
 \urlstyle{leo}
 
 
-% from Hélène
-
-
- \usepackage{layout}
-%% \usepackage{geometry}
- \usepackage{array}
- \usepackage{fancyvrb}
- \usepackage[parfill]{parskip} % espace apres paragraph
-%% \usepackage{fourier} % not to use
-\usepackage{pdfpages}
-%
-\newcommand{\QED}{\begin{flushright} QED \end{flushright}}
-\newcommand{\ent}[1]{\lfloor #1 \rfloor}
-\newcommand{\ceil}[1]{\lceil #1 \rceil}
-\newcommand{\tup}[2]{\left( \begin{matrix} #1\\ #2\end{matrix} \right)}
-%
-%
-%% from CM5
-%\usepackage{varioref}
-%\setlength\parindent{0pt}
-
-
-
-% section numbering type
-\renewcommand\thepart{\Alph{part}}
-\renewcommand\thesection{\arabic{section}}
-\renewcommand\thesubsection{\hspace{0.5cm}\alph{subsection}}
-\renewcommand\thesubsubsection{\hspace{1cm}\roman{subsubsection}}

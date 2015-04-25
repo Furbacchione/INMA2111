@@ -1,4 +1,24 @@
-\part*{TEMPORARY - CM5}
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{varioref}
+\usepackage{color}
+\setlength\parindent{0pt}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{amssymb}
+\geometry{hmargin=3cm}
+\usepackage{amsthm}
+
+\begin{document}
+
+\title{LINMA2111 - CM5 - 2015}
+\author{Mathieu Dath \& Damien Scieur}
+\date{\today}
+\maketitle
 
 In the last course, we were exploring dynamic programming: we had seen how to compute $\begin{pmatrix}
 n \\
@@ -39,7 +59,7 @@ This table is filled diagonal by diagonal (starting from the main diagonal then 
 \end{align*} 
 This is clealry better than the complexity we had before!
 \\ \\
-Note that fill in the table is a "bottom-up" approach while a recursive algorithm combined with a memory function (some memorization) is a "top-down" approach.
+Note that fill in the table is a "bottom-up" approach while a recursive algorithm combined with a memory function (some memorization) is a "top down approach.
 
 \section{When can dynamical programming be used for optimisation problem?}
 
@@ -51,11 +71,11 @@ There are two principles to take into account:
 
 \subsection{Exemples}
 
-\subsubsection{Shortest path in a graph}
+\subsubsection*{Shortest path in a graph}
 
 We can see that a subpath of a shortest path is also a shortest path (thus the optimality principle is respected). Dijkstra's and Floyd's algorithms are good examples of dynamical programming applied to this problem, altough they are a bit more clever (see next chapter).
 
-\subsubsection{Knapsack}
+\subsubsection*{Knapsack}
 
 The problem here is to fill in a bag of volume $V$ with objets among $n$, each having a volume $v_i$ and a value $c_i$. The problem can be written
 \begin{align*}
@@ -80,7 +100,7 @@ we need to compute Value$(n,V)$. But before computing Value$(n,V)$ we need to co
 \\ \\
 As some entries may never be needed to compute Value(Solution), it is a recursive function with memorization (a top-down approach may be useful).
 
-\subsubsection{Longuest common subsequence}
+\subsubsection*{Longuest common subsequence}
 
 Let us show the concept with an example: we start with the sequences 
 \begin{align*}
@@ -109,10 +129,10 @@ for $i,j > 0$.
 \\ \\
 The cost for $X_n,Y_n$ is $\Theta (n^2)$, but for all these problems, we do not want only the optimal cost, but also the optimal structure (path, subsequence, etc.). We thus need to create a second table where we will record the optimal choices for each subproblem as it is then easy to reconstruct the optimal structure in the end.
 
-\part{Greedy Algorithms}
+\section{Greedy algorithm}
 
 Let us now introduce a new kind of algorithm, which will be seen in more details in the next course: the greedy algorithms. In this section, we look at the activity selection problem: given a set of activities $\{a_1,...,a_n\}$ and the knowledge that activity $a_i$ takes the time interval $[s_i, f_i[$ (where $s_i$ is the start time and $f_i$ the end time), we want to find the maximum size set of mutually disjoint activities.
 \\ \\
 This is equivalent to booking an auditorium with as many activites as possible without scheduling conflicts.
 
-
+\end{document}
