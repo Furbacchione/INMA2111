@@ -1,15 +1,12 @@
-\part*{TEMPORARY - CM5}
-
-In the last course, we were exploring dynamic programming: we had seen how to compute $\begin{pmatrix}
-n \\
-k
-\end{pmatrix}$. Let us now see how we can improve chained matrix multiplication. 
+\part*{\hl{TEMPORARY - CM5}}
 
 \section{Chained matrix multiplication}
 
-As stated in the last course, we have $n$ matrices $M_1,..., M_n$ and the dimension of the $i$-th matrix $M_i$ is $d_{i-1} \times d_i$. We saw that the naïve cost of the product $AB$ (with $A$ being an $a \times b$ matrix and $B$ an $b \times c$ matrix) is $abc$. 
-\\ \\
+Let us now see how we can improve chained matrix multiplication.\\
+Let's say we have $n$ matrices $M_1,..., M_n$ and the dimension of the $i$-th matrix $M_i$ is $d_{i-1} \times d_i$. We saw that the naive cost of the product $AB$ (with $A$ being an $a \times b$ matrix and $B$ an $b \times c$ matrix) is $abc$.\\ 
+
 We showed that the number of possible orders is Catalan's number (approximately $\frac{4^n}{n\sqrt{n}}$) and brute force is thus clearly not an option.
+
 
 \subsection{Divide and conquer approach} 
 
@@ -111,8 +108,8 @@ The cost for $X_n,Y_n$ is $\Theta (n^2)$, but for all these problems, we do not 
 
 \part{Greedy Algorithms}
 
-Let us now introduce a new kind of algorithm, which will be seen in more details in the next course: the greedy algorithms. In this section, we look at the activity selection problem: given a set of activities $\{a_1,...,a_n\}$ and the knowledge that activity $a_i$ takes the time interval $[s_i, f_i[$ (where $s_i$ is the start time and $f_i$ the end time), we want to find the maximum size set of mutually disjoint activities.
-\\ \\
-This is equivalent to booking an auditorium with as many activites as possible without scheduling conflicts.
+Let us now introduce a new kind of algorithm, which will be seen in more details in this new part: the greedy algorithms. In this part, we look at the activity selection problem: given a set of activities $\{a_1,...,a_n\}$ and the knowledge that activity $a_i$ takes the time interval $[s_i, f_i[$ (where $s_i$ is the start time and $f_i$ the end time), we want to find the maximum size set of mutually disjoint activities.\\
+
+This is equivalent to booking an auditorium with as many activities as possible without scheduling conflicts.
 
 

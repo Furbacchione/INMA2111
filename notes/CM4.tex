@@ -1,18 +1,17 @@
-\part*{TEMPORARY - CM4}
-
-\section{The divide and conquer principle (end) and dynamic programing}
-
-    \subsection{Divide and conquer : \texttt{DeterministicSelect(T,i)}}
+\part*{\hl{TEMPORARY - CM4}}
 
 
+\section{Deterministic Select}
 
-In the previous course, we determine the \texttt{RandomSelect(T,i)} algorithm in which we can find the $i^{th}$ smallest entry of an array T in $\Theta (n)$ (worst-case expected time). This algorithm was based on a variance of the quick sort.
 
-The question asked is : Can we do it deterministic O(n) time?
 
-To answer it, we must find a good pivot deterministically. This lead us to the following \texttt{DeterministicSelect(T,i)} (List.\ref{list:c4:deterministicselect}).
+In the previous course, we determine the Random Select algorithm in which we can find the $i^{th}$ smallest entry of an array T in $\Theta (n)$ (worst-case expected time). This algorithm was based on a variance of the quick sort.
 
-\begin{lstlisting}[label={list:c4:deterministicselect},caption=Pseudo-code of the DeterminisicSelect algorithm]
+The question asked is : Can we do it deterministic $\mathcal{O}(n)$ time?
+
+To answer it, we must find a good pivot deterministically. This lead us to the following Deterministic Select (Code \ref{list:c4:deterministicselect}).
+
+\begin{lstlisting}[label={list:c4:deterministicselect},caption=Pseudo-code of the Determinisic Select algorithm]
 DeterministicSelect(T,i) :
     Split T into ceiling(n/5) arrays of maxsize = 5 
     
@@ -41,7 +40,7 @@ As our pivot is the median of the different medians, we can say for sure that fo
 
 We can do the same reasoning for the value higher than the pivot and also affirm that at least $3\times \frac{1}{2} \times \ceil{\frac{n}{5}} \approx \frac{3n}{10}$ values are higher for sure.
 
-A simple drawing (Fig.\ref{fig:c4:deterministicselect}) can easily illustrate this reasoning.
+A simple drawing (Fig. \ref{fig:c4:deterministicselect}) can easily illustrate this reasoning.
 
 \begin{figure}
 \centering
@@ -129,9 +128,9 @@ t_n &\leq t_{\frac{n}{5}} + t_{\frac{7n}{10}} + an\\
 \end{align*}
 \QED
 
+\part{Dynamic Programming}
 
-
-    \subsection{Dynamic programing : Computation of combinatorial value}
+    \section{Computation of combinatorial value}
 
 
 
@@ -147,7 +146,7 @@ By definition, it can be computed by the following recurrence equation :
 
         
         
-        \subsubsection{Naive way : simple recursive algorithm}
+        \subsection{Naive way : simple recursive algorithm}
 
 
 
@@ -169,7 +168,7 @@ However, as the results are used directly in the computation, the space complexi
 
 
 
-        \subsubsection{Better way using Pascal's triangle : bottom up approach}
+        \subsection{Better way using Pascal's triangle : "bottom-up" approach}
 
 
 
@@ -182,18 +181,21 @@ The space complexity is $\Theta (nk)$ if we keep all the intermediate values, bu
 
 If we compare the naive way with this one, we can see that the time complexity was improved at the expense of the space complexity. This effect is called the time-space trade-off.
 
-This way of solving all the subproblem from the smallest to the final value (the one needed) is called the bottom up approach.
+This way of solving all the subproblem from the smallest to the final value (the one needed) is called the "bottom-up" approach.
 
 
 
-        \subsubsection{Third way with memoization : top down approach} 
+        \subsection{Third way with memoization : "top-down" approach} 
 
 
 
-The top down approach consist of taking the initial recursive algorithm and add a means of storing intermediate results.
+The "top-down" approach consist of taking the initial recursive algorithm and add a means of storing intermediate results.
 
 We can for example use a table (initially set to $Tab(n,k) = -1 \ \forall n,k$) and take the initial algo but before the computation, check if the result is already in the table. 
 
-This is called recursive algorithm with memory function (or with memoization\footnote{if you doubt about the name, check out \url{http://en.wikipedia.org/wiki/Memoization}}). This technique can be useful for problems where we do not know in advance which sub-problems are relevant and need to be computed because it compute exactly what's needed.
+This is called recursive algorithm with memory function (or with memoization\footnote{if you doubt about the name, check out \url{http://en.wikipedia.org/wiki/Memoization}}). This technique can be useful for problems where we do not know in advance which subproblems are relevant and need to be computed because it compute exactly what's needed.
 
 The time complexity will be the same as the bottom up approach ($\Theta (nk)$). But as we keep all intermediate result, we have a space complexity of $\Theta (nk)$. 
+
+
+\textcolor{red}{Here we miss the Chained matrix products part}

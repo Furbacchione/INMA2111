@@ -26,34 +26,39 @@ g :& \mathbb{N} \rightarrow \mathbb{R}^+
 
 \vspace{0.5cm}
 \begin{example}
+\begin{leftbar}
 \begin{align*} 
 	   n^2 & = \mathcal{O}(n^2) &\\
 		 & = o(n^3) &\\
 		 & = \Theta \left(\frac{n (n-1)}{2}\right) &\\
 		& = \Omega (n \log (n))& 
 	\end{align*}
+	\end{leftbar}
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \part{Sorting Algorithms}
 
-We will start with illustrating some ideas on sorting algorithms. The sorting problem may be defined by its input and output. Hence our goal is to find some algorithms such that: \newline
+We will start with illustrating some ideas on sorting algorithms. The sorting problem may be defined by its input and output. Hence our goal is to find some algorithms such that: 
 
-\textbf{Input :} an array $T = \begin{pmatrix}T(1) & \ldots & T(n) \end{pmatrix}$. 
 
-\textbf{Output :} the array is sorted in increasing order. 
+\begin{lstlisting}[label={list:c1:inout},caption=Inputs and outputs of sorting algorithms]
+INPUT  : array T = (T(1), T(2), ..., T(n)) of n numbers
+OUTPUT : array T sorted
+\end{lstlisting}
+
 
 \section{Selection Sort}
 
 First, we consider a naïve algorithm: \textbf{Selection Sort}. This first algorithm can be formulated as follows:
 
-\begin{itemize}
-\renewcommand{\labelitemi}{$\bullet$}
-	\item Find the smallest entry of $T$.
-	\item Put it in the first position.	
-	\item Repeat this procedure iteratively: Find the smallest entry of the rest, put it in the second position, etc
-\end{itemize}
+\begin{lstlisting}[label={list:c1:selection},caption=Pseudo-code of the selection sort algorithm]
+for i from 1 to n - 1
+    select the smallest element in the sub array from index i to n
+    swap it with element at index i
+\end{lstlisting}
+
 
 What about the time complexity of this algorithm?
 \begin{align*}
@@ -66,13 +71,15 @@ The complexity of this algorithm is $\Theta(n^2)$ for each instance. We have Wor
 \end{remark}
 
 \section{Insertion Sort}
-\begin{itemize}
-\renewcommand{\labelitemi}{$\bullet$}
-	\item \textbf{For} $i = 2$ to $n$ \hspace{1cm} \% $T(1), \ldots , T(i-1)$ are already sorted = "Loop-invariant".
-  \item Shift $T(i)$ to the left by recursive swaps until well paced.
-\end{itemize}
+
+\begin{lstlisting}[label={list:c1:insertion},caption=Pseudo-code of the insertion sort algorithm]
+for i from 2 to n % loop invarient : T(1) ... T(i-1) are sorted
+    shift T(i) to the left by successive swap until well placed
+\end{lstlisting}
+
 \vspace{0.5cm}
 \begin{example}
+\begin{leftbar}
 We can consider a small exemple, the first four elements of the array being sorted:\\
 \tikzstyle{block} = [rectangle, draw, 
     text width=0.8cm, text centered]
@@ -91,6 +98,7 @@ We can consider a small exemple, the first four elements of the array being sort
 		\draw[->,distance =8pt,thick, draw=blue] (four.north)to[bend right](three.north);
 		\draw[->,thick] (ind.north)to(five.south);
 \end{tikzpicture}
+\end{leftbar}
 \end{example}
 
 Regarding the time complexity, we have: 
@@ -121,20 +129,14 @@ This third algorithm is based on the idea of "Divide-and-Conquer" which solves t
 
 In particular, in this case:
 
-\begin{itemize}
-\renewcommand{\labelitemi}{$\bullet$}
-	\item $Pivot:=T(1)$.
-	\item $T_{low}:= [T(i): T(i)\leq Pivot]$.
-	\item $T_{high}:= [T(i): T(i)>Pivot]$.
-	\item $\left.
-	\begin{array}{ll}
-       \rightarrow & \text{ Quick Sort $T_{low}$}.\\
-       \rightarrow &\text{ Quick Sort $T_{high}$}.
-			\end{array}
-  \right\}$ $\Rightarrow T := [T_{low}; T_{high}]$.
-  
-	(The pivot being in $T_{low}$).
-\end{itemize}
+\begin{lstlisting}[label={list:c1:quick},caption=Pseudo-code of the quick sort algorithm]
+pivot T(1)
+T_low = [T(i) : T(i) < pivot && i > 1]
+T_high = [T(i) : T(i) >= pivot && i > 1]
+quicksort T_low
+quicksort T_high
+T = [T_low pivot T_high] (The pivot being in $T_{low}$)
+\end{lstlisting}
 
 About the complexity of this algorithm:
 \begin{itemize}
@@ -196,17 +198,13 @@ Can we reach worst-case complexity $\mathcal{O}(n \log(n))$ deterministically?
 
 This algorithm is also based on Divide-and-Conquer approach. 
 
-\begin{itemize}
-\renewcommand{\labelitemi}{$\bullet$}
-	\item $T_{left} := [T(1), \ldots, T(\lfloor \frac{n}{2} \rfloor)]$.
-	\item $T_{right}:= [T(\lfloor \frac{n}{2}\rfloor +1), \ldots, T(n)]$.
-	\item $\left.
-	\begin{array}{ll}
-       \rightarrow & \text{ Merge Sort $T_{left}$}.\\
-       \rightarrow &\text{ Merge Sort $T_{right}$}.
-			\end{array}
-  \right\}$ $\Rightarrow T := Merge\left(T_{left}, T_{right}\right)$.  
-\end{itemize}
+\begin{lstlisting}[label={list:c1:merge},caption=Pseudo-code of the merge sort algorithm]
+T_left = [T(i) : i <= n/2]
+T_right = [T(i) : i > n/2]
+mergesort T_left
+mergesort T_right
+T = [T_left T_right]
+\end{lstlisting}
 
 Time of merge is $\Theta(n)$, so we have the recurrence equation: 
 \begin{align*}

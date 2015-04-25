@@ -1,15 +1,9 @@
 %!TEX root = ../main.tex
-\part*{TEMPORARY - CM6}
+\part*{\hl{TEMPORARY - CM6}}
 
-\section{Greedy algorithms}
-
-\subsection{Activity selection problem} 
+\section{Activity selection problem} 
 We would like to book as many pairwise disjoint activities as possible for a seminar/lecture room.
-Each activity is characterized by two features : its starting time and its finishing time. Let us write the $i$-th activity as
-\begin{equation*}
-a_i = [s_i \: \:  f_i[
-\end{equation*}
-with $s_i$ and $f_i$ its starting and finishing time, respectively. Let us also assume that activities are sorted such that $f_1 \leq f_2 \leq \ldots \leq f_n$.
+Each activity is characterized by two features : its starting time and its finishing time. Let us write the $i$-th activity as $a_i = [s_i \: \:  f_i[$ with $s_i$ and $f_i$ its starting and finishing time, respectively. Let us also assume that activities are sorted such that $f_1 \leq f_2 \leq \ldots \leq f_n$.
 
 \begin{figure}[h!]
 \centering
@@ -32,14 +26,10 @@ with $s_i$ and $f_i$ its starting and finishing time, respectively. Let us also 
 \caption{Example of two disjoint activities}
 \end{figure}
 
-\subsubsection{Dynamic programming solution}
-\subsection*{Can we divide this into subproblems ?}
+\subsection{Dynamic programming solution}
+\subsubsection{Can we divide this into subproblems ?}
 
-Let us define 
-\begin{equation*}
-S_{ij} = \{ a_k \: | \: a_k \subseteq [f_i \: \: s_j [ \: \}
-\end{equation*}
-and $c_{ij}$ as the maximum number of disjoint activities we can book in $[f_i \: \: s_j [$  from activities in $S_{ij}$.
+Let us define $S_{ij} = \{ a_k \: | \: a_k \subseteq [f_i \: \: s_j [ \: \}$ and $c_{ij}$ as the maximum number of disjoint activities we can book in $[f_i \: \: s_j [$  from activities in $S_{ij}$.
 
 \begin{figure}[h!]
 \centering
@@ -97,11 +87,11 @@ $0$ & if $S_{ij} = \emptyset$ .
 \end{equation*}
 This decomposition in subproblems tells us that there exists a dynamic programming algorithm to solve the activity selection problem.
 
-\subsubsection{Greedy solution}
+\subsection{Greedy solution}
 However, we can be smarter than that ! Indeed, we can know which activity to choose in advance : the one that finishes first among $S_{ij}$, i.e. the one with smalllest index in $S_{ij}$ (since $f_1 \leq f_2 \leq \ldots \leq f_n$).
 
 
-\subsection*{Why ?}
+\subsubsection{Why ?}
 
 If we have an optimal solution (for the subproblem $c_{ij}$) that doesn’t use $a_{k_{\text{min}}}$ (the activity in $S_{ij}$ with earliest finish) but starts with $a_k \in S_{ij}$ instead, then we can get a solution just as good (same cardinality $c_{ij}$) by replacing $a_k$ with $a_{k_{\text{min}}}$. This is illustrated on Figure \ref{Illustration argument greedy}.
 
@@ -175,40 +165,37 @@ If we have an optimal solution (for the subproblem $c_{ij}$) that doesn’t use 
 \end{figure}
 
 Consequently, a greedy algorithm can be designed to take advantage of that fact. That greedy algorithm is the following :
-\begin{equation*}
-\texttt{ActivitySelect}(\{ a_1,\ldots,a_n\}) := \{a_1 \} \: \: \bigcup \: \: \texttt{ActivitySelect}(\{\text{activities disjoint from  } a_1\}) \: .
-\end{equation*}
+\begin{lstlisting}[label={list:c6:activitySelectionGreedy},caption=Pseudo-code of the greedy algorithm for activity selection problem]
+ActivitySelect({ a_1,...,a_n})
+		{a_1 } union ActivitySelect({activities disjoint from a_1})
+\end{lstlisting}
 The time complexity of this algorithm is 
 \begin{equation*}
 \overbrace{\Theta(n \log n)}^{\text{Sort}} + \: \Theta(n) = \Theta(n \log n) \: .
 \end{equation*}
 On the other hand, dynamic programming would cost $\mathcal{O}(n^3)$. We can see a big difference in terms of time complexity between the greedy approach and the dynamic programming approach for the activity selection problem.
 
-“Greedy” : we build up a solution from $\emptyset$ by adding at each step the “best” piece : in a short-sighted way : we don’t care for the future.
+“Greedy” : we build up a solution from $\emptyset$ by adding at each step the “best” piece. In a short-sighted way, we don’t care for the future.
 
-A greedy approach can sometimes be adopted in dynamic programming situations where the \textbf{principle of suboptimality} applies. However, a greedy choice does not always exist. \\
+A greedy approach can sometimes be adopted in dynamic programming situations where the \textbf{principle of suboptimality} applies. However, a greedy choice does not always exist. 
 
-
-\begin{tcolorbox}[title=\textbf{Other examples of greedy algorithms}]
+\subsubsection{Other examples of greedy algorithms}
 \begin{itemize}
  \item Minimum spanning tree : Kruskal and Prim algorithms
  \item Shortest path : Dijkstra algorithm
 \end{itemize}
-\end{tcolorbox}
 
-\subsection{Scheduling problem}
+\section{Scheduling problem}
 Let us now consider another famous problem:
-
-\begin{tcolorbox}[title=\textbf{Scheduling problem}]
 \begin{itemize}
  \item $n$ jobs, each having a one unit of time duration
- \item $t_i$ deadline for the job $i$
- \item $c_i$ : profit for job $i$
+ \item $t_i$: deadline for the job $i$
+ \item $c_i$: profit for job $i$
 \end{itemize}
-\end{tcolorbox}
+
 It is important to say that we earn $c_i$ from job $i$ if and only if it is scheduled to finish before its deadline $t_i$. The aim is to maximize the total profit $P_{Total}$, being the sum of the individual profits of the jobs finishing before their respective deadline.
 
-\subsubsection{Example}
+\subsection{Example}
 Let's take the following instance
 \begin{table}[h!]
 \centering
@@ -271,22 +258,22 @@ This is in fact the optimal solution. Indeed, if we schedule first job 4, and th
 %
 % ----------------------------------------------------------------------
 
-\subsubsection{Generalization: Greedy Algorithm}
+\subsection{Generalization: Greedy Algorithm}
 
-The greedy algorithm is very simple: \\[-5pt]
+The greedy algorithm is very simple:
 
 % , with index = deadlines: i=1,2,3,...
-\begin{lstlisting}[style=pseudo]
+\begin{lstlisting}[label={list:c6:SchedulingGreedy},caption=Pseudo-code of the greedy algorithm for scheduling problem]
 L = Empty list (will hold selected jobs)
 S = stack of jobs ordered by profit with highest on top.
 While S not Empty
 	a = S.pop()
 	Try add a in L at the farthest time index within deadlines
-\end{lstlisting} ~\\[-1.3cm]
+\end{lstlisting}
+
 The list \texttt{L} has length $T$ where $T$ is the time horizon considered. The $i$-th element of \texttt{L} is the job being scheduled from $t = i-1$ to $t = i$, or is empty if no job is scheduled at that time slot. Note that this algorithm works if $t_i \in \mathbb{N} \: \: \forall i$ but doesn’t work if there exist a $t_i$ non-integral. Let's see how it works on our example (in this case $T = 2$):
 
-\vspace{-0.5cm}
-\begin{lstlisting}[style=Classic]
+\begin{lstlisting}[label={list:c6:SchedulingGreedy_Example},caption=Example of the greedy algorithm for scheduling problem]
 Select job with highest profit : job1
 	Try add job1 in L -> possible
 	$ L ={/, job1} : Profit of 50
@@ -302,8 +289,7 @@ Select with 4th highest profit : job2
 STOP
 \end{lstlisting}
 
-
-\textbf{Does the greedy algorithm work ? How to check that a set of jobs is feasible ?}
+\subsection{Does the greedy algorithm work? How to check that a set of jobs is feasible?}
 \begin{theorem}
 A set of jobs with deadlines $ t_1 \leq t_2  \leq \hdots \leq t_n $ is feasible, if and only if, the order $1, 2, \ldots, n$ is feasible.
 \end{theorem}
@@ -334,11 +320,8 @@ A set of jobs with deadlines $ t_1 \leq t_2  \leq \hdots \leq t_n $ is feasible,
 is feasible, with $t_i \leq t_j$, then we can swap $i$ and $j$, and it’s still a feasible schedule. Indeed, since this schedule is feasible, we have $t_i  \geq b$ and $t_j \geq a$. Furthermore, we have that $b \geq a$ and $t_j \geq t_i$. It follows that $t_i \geq b \geq a$ and $t_j \geq t_i \geq b$, which make the schedule where $i$ and $j$ are swapped feasible. We can repeat swaps as many times as necessary $ \Rightarrow$ order $1,2,\hdots, n$ feasible.
 
 \item ($\Leftarrow$) Trivial.
-
 \end{itemize}
-
-
-
+\QED
 \end{proof}
 
 Note that if the jobs are already ordered by increasing deadlines, then checking feasibility of the schedule is done in $\Theta(n)$.
@@ -416,14 +399,17 @@ $\Rightarrow$ Both feasible $\Rightarrow$ can be ordered at unit time slots from
 \end{figure}
 
 We want to “align” $I$ and $J$ as much as possible to compare them: schedule same jobs at the same time.
-\begin{tcolorbox}[title=\textbf{Example}]
+
+\begin{example}
+\begin{leftbar}
 Suppose that job $k \in I \bigcap J$, e.g. $k = i_4 = j_8$, then job $k$ is scheduled at the 4-th time slot in $I$ and at the 8-th time slot in $J$. We want to swap jobs either in $I$ or in $J$ in order to have job $k$ scheduled at the same time slot in both schedules. \\
 
 To that end, we will swap $i_4$ and $i_8$ in $I$. If $i_8$ is empty, then after the swap is performed, $i_4$ will be empty and $i_8$ will contain job $k$. If $i_8 = \tilde{k}$ was not empty, then after the swap has been performed, job $\tilde{k}$ is now scheduled on the 4-th time slot and job $k$ on the 8-th. Moving job $\tilde{k}$ from the 8-th time slot to the 4-th does not put the feasibility of the new schedule in jeopardy, since it is now scheduled earlier. Furthermore, scheduling the job $k$ at the 8-th time slot instead of the 4-th is also feasible since job $k$ is scheduled at that 8-th time slot in $J$, and $J$ is assumed to be feasible. \\
 
 Could we have swapped $j_8$ and $j_4$ in $J$ instead of swapping $i_4$ and $i_8$ in $I$? The answer is : it depends, but in general \textbf{NO} ! Indeed, although scheduling job $k$ at the 4-th time slot instead of at the 8-th in $J$ would always be feasible, there is no guarantee that the job that was initially in $j_4$ would still be feasible at the 8-th time slot, therefore preventing the "swapped" schedule to be feasible !
-%e.g. : $k = i_7 = j_2$ : then swap $j_2$ and $j_7$. Job $k$ will never be rescheduled
-\end{tcolorbox}
+e.g. : $k = i_7 = j_2$ : then swap $j_2$ and $j_7$. Job $k$ will never be rescheduled
+\end{leftbar}
+\end{example}
 
 Repeat all swaps until no more is possible, then all common jobs are aligned.
 Now, let us take a look at all the situations one could think of where the jobs are different in $I$ and in $J$. The first situation looks like
@@ -505,6 +491,7 @@ $a \notin J$
 If $c_b > c_a$ : then the greedy algorithm would have chosen $b$ before $a$ $\Rightarrow b$ would be in $I$. \\
 If $c_a > c_b$ : then $J$ is strictly improved by replacing $b$ with $a$, then impossible case. \\
 It follows that $c_a = c_b$, and consequently we have that $C_I = C_J$.
+\QED
 \end{proof}
 
 Time complexity 
