@@ -1,22 +1,20 @@
-\part*{TEMPORARY - CM7}
+\part*{\hl{TEMPORARY - CM7}}
 
 \part{Random Algorithms}
 
 First, let's do a few exercices in probability.
 
-
-
-\subsection{The marriage/secretary/harem/... problem}
+\section{The marriage/secretary/harem/... problem}
 $n$ candidates of different quality apply for an open position. They are sent in random order. Every time you interview a candidate who proves better than any other previous one, you hire him/her.
 
-\subsubsection{How many persons will you hire on average?}
+\subsection{How many persons will you hire on average?}
 Say you interview them 
 \begin{itemize}
 \item in increasing order $q_1 < q_2 < \ldots < q_n$ ($1,2, \ldots, n$ denote the order of the interviews) $\Rightarrow n$ hires;
 \item in decreasing order $q_1 > q_2 > \ldots > q_n \Rightarrow 1$ hire;
 \item in random order $\Rightarrow$ something in between.
 \end{itemize}
-To find to number of persons we will hire on average, we will use the powerful technique of \textit{indicator variable}. Let
+To find the number of persons we will hire on average, we will use the powerful technique of \textit{indicator variable}. Let
 \begin{align*}
 X_i &=
   \left\{
@@ -25,30 +23,30 @@ X_i &=
         0 &\text{ it not }
       \end{aligned}
     \right.\\
-\mathbf{E}[X_i] &= \text{Prob[person $i$ is hired}] &\text{ fondamental property of indicator variable}
+\mathbf{E}[X_i] &= \text{P[person $i$ is hired}] &\text{ fondamental property of indicator variable}
 \end{align*}
 We want to find
 \begin{align*}
 \mathbf{E}[X] &=  \mathbf{E}[X_1+X_2+\ldots+X_n] & \\
 &=  \mathbf{E}[X_1] + \mathbf{E}[X_2] + \ldots +\mathbf{E}[X_n]  &\text{since the expectation is linear}\\
-&= \sum_{i=1}^n \text{Prob[$i$ is hired]} &\\
+&= \sum_{i=1}^n \text{P[$i$ is hired]} &\\
 &= \sum_{i=1}^n \frac{1}{i} &\text{because the best among $1,2,\ldots,i$ is $i$ with probability $\frac{1}{i}$}\\
 &\approxeq \int_1^n \frac{1}{i}  \, \mathrm{d}i. &\text{continuous problem}\\
 &= \ln n. &
 \end{align*}
 
-\subsubsection{Variant}
+\subsection{Variant}
 This time, we hire only 1 person and we want to maximize the probability to pick the best among the $n$ candidates (as soon as we interview someone, we need to say yes or no).
 
-\paragraph{Algorithm}
-\begin{itemize}
-\item Don't hire the first $k-1$ candidates (observation phase).
-\item Hire the first among the candidates $k, k+1, \ldots, n$ to be the best interviewed so far.
-\end{itemize}
-\subsubsection{What is the best $k$?}
+\begin{lstlisting}[label={list:c7:hiring problem},caption=Pseudo-code of the Variant of Hiring Problem algorithm]
+Don't hire the first k-1 candidates (observation phase).
+Hire the first among the candidates k, k+1,..., n to be the best interviewed so far.
+\end{lstlisting}
+
+\subsection{What is the best $k$?}
 \begin{align*}
-\text{Probability of success} &= \sum_{i=k}^n \text{Prob[$i$ is hired and is the best]}\\
-&= \sum_{i=k}^n  \text{Proba[i is the best]} \text{Prob[i is hired | i is the best]}\\
+\text{Probability of success} &= \sum_{i=k}^n \text{P[$i$ is hired and is the best]}\\
+&= \sum_{i=k}^n  \text{[$i$ is the best]} \times \text{P[$i$ is hired | $i$ is the best]}\\
 &= \sum_{i=k}^n  \frac{1}{n} \frac{k-1}{i-1}\\
 &\approxeq \frac{k}{n} \int_{k-1}^{n-1} \frac{1}{x} \, \mathrm{d}x.\\
 &= \frac{k}{n} (\ln n - \ln k)\\
@@ -73,7 +71,7 @@ So $k = \frac{n}{e} \approxeq 0.37n$ is optimal and the corresponding probabilit
 
 
 
-\subsection{The birthday paradox}
+\section{The birthday paradox}
 How many people do you need to gather so that two of them will have the same birthday with fair chances? We will solve this problem with indicator variables.
 \begin{align*}
 X_{ij} &=
@@ -95,5 +93,5 @@ So, if $n = \sqrt{2t}$, then $\mathbf{E}[X] \approxeq 1$, i.e. there exist a fai
 
 
 
-\subsection{Compute $\pi$}
+\section{Compute $\pi$}
 Let's see an (inefficient) method to compute $\pi$.

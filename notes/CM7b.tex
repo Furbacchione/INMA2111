@@ -1,77 +1,9 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Short Sectioned Assignment
-%% LaTeX Template
-%% Version 1.0 (5/5/12)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%%----------------------------------------------------------------------------------------
-%%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%%----------------------------------------------------------------------------------------
-%
-%\documentclass[paper=a4, fontsize=11pt]{scrartcl}
-%
-%\usepackage[utf8]{inputenc} 
-%\usepackage[T1]{fontenc}
-%\usepackage[french]{babel}
-%\usepackage{amsmath,amsfonts,amsthm}
-%
-%\usepackage{algorithm}
-%\usepackage{algorithmic}
-%
-%\usepackage{graphicx}
-%\usepackage{epstopdf}
-%
-%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
-%
-%\usepackage{sectsty} % Allows customizing section commands
-%\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
-%
-%\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
-%
-%\usepackage{fancyhdr} % Custom headers and footers
-%\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
-%\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
-%\fancyfoot[L]{} % Empty left footer
-%\fancyfoot[C]{} % Empty center footer
-%\fancyfoot[R]{\thepage} % Page numbering for right footer
-%\renewcommand{\headrulewidth}{0pt} % Remove header underlines
-%\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
-%\setlength{\headheight}{13.6pt} % Customize the height of the header
-%
-%\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
-%\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
-%\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
-%
-%\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
-%\usepackage{todonotes}
-%%\usepackage[disable]{todonotes}
-%\usepackage{amsthm}
-%
-%%----------------------------------------------------------------------------------------
-%%	TITLE SECTION
-%%----------------------------------------------------------------------------------------
-%
-%\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
-%
-%\title{	
-%\normalfont \normalsize 
-%\textsc{Ecole Polytechnique de Louvain} \\ [25pt]
-%\horrule{0.5pt} \\[0.4cm] 
-%\huge LINMA2111 Algorithmes et complexité \\ CM 7
-%\horrule{0.5pt} \\[0.4cm]
-%}
-%
-%\author{Mélanie Sedda - Benoît Sluysmans} 
-%
-%\date{\normalsize\today}
-%\begin{document}
-%
-%\maketitle
-
+\part*{\hl{TEMPORARY - CM7b}}
 
 Let's see an (inefficient) method to compute $\pi$:
 
-\textit{THEOREM (Buffon):} If I throw randomly a needle of length 1 on a floor with planks of width 2, the probability of crossing a crack (i.e. overlap two tracks) is $\frac{1}{\pi}$ (see figure \ref{needles}).
+\begin{theorem} (Buffon): If I throw randomly a needle of length 1 on a floor with planks of width 2, the probability of crossing a crack (i.e. overlap two planks) is $\frac{1}{\pi}$ (see figure \ref{needles}).
+\end{theorem}
 
 
 \begin{figure}[h]
@@ -81,9 +13,9 @@ Let's see an (inefficient) method to compute $\pi$:
 \label{needles}
 \end{figure}
 
-\textit{PROOF:}
+\paragraph*{Proof.}
 \begin{enumerate}
-\item Trigo + calculus: integrate over all angles and horizontal coordinates of needles.
+\item Trigonometry + calculus: integrate over all angles and horizontal coordinates of needles.
 \item Consider a needle of length $l$.
 $E_l := $ expected number of cracks crossed by the needle $= \mathbb{E}(X_l)$, where $X_l$ is the number of cracks crossed. We have
 $$
@@ -119,7 +51,7 @@ $$
 \end{figure}
 
 In the limit, for a curved needle of length $l$, we always have $\mathbb{E}(\text{number of cracks crossed}) = \alpha l$. To fix $\alpha$, let's look at a circular needle of radius $1$, such that $E_l=2$, always (see figure \ref{circles})! We can write $E_{2\pi} = 2$, but $E_{2\pi} = \alpha 2 \pi$, and we conclude with $\alpha = \frac{1}{\pi} $.
-\end{enumerate} \qed
+\end{enumerate} \QED
 
 We can then develop an algorithm to compute $\pi$:
 \begin{itemize}
