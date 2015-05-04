@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg8702"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="tree7.svg">
+  <defs
+     id="defs8704" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="306.16231"
+     inkscape:cy="620.05354"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1061"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata8707">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="231.88394"
+       y="77.348373"
+       id="text8710"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8712"
+         x="231.88394"
+         y="77.348373">Is T[1] &lt; T[5]?</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 245.46706,99.030718 193.94929,249.54345"
+       id="path8714"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 460.1245,99.03072 51.51777,150.51273"
+       id="path8714-2"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path9242"
+       sodipodi:cx="347.99756"
+       sodipodi:cy="67.463448"
+       sodipodi:rx="185.36299"
+       sodipodi:ry="34.345188"
+       d="m 533.36055,67.463448 a 185.36299,34.345188 0 1 1 -370.72598,0 185.36299,34.345188 0 1 1 370.72598,0 z" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="462.7038"
+       y="292.38458"
+       id="text8710-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8712-4"
+         x="462.7038"
+         y="292.38458">Is T[1] &lt; T[6]?</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 476.28691,314.06694 424.76914,464.57968"
+       id="path8714-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 690.94434,314.06695 51.51777,150.51273"
+       id="path8714-2-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       transform="translate(230.81984,215.03623)"
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path9242-2"
+       sodipodi:cx="347.99756"
+       sodipodi:cy="67.463448"
+       sodipodi:rx="185.36299"
+       sodipodi:ry="34.345188"
+       d="m 533.36055,67.463448 a 185.36299,34.345188 0 1 1 -370.72598,0 185.36299,34.345188 0 1 1 370.72598,0 z" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="24.297588"
+       y="289.35416"
+       id="text8710-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8712-5"
+         x="24.297588"
+         y="289.35416">Is T[2] &lt; T[6]?</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 37.880709,311.03648 -51.51777,150.51273"
+       id="path8714-29"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 252.53815,311.03648 51.51777,150.51273"
+       id="path8714-2-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       transform="translate(-207.58635,212.00576)"
+       sodipodi:type="arc"
+       style="fill:none;stroke:#000000;stroke-width:10;stroke-linecap:butt;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path9242-8"
+       sodipodi:cx="347.99756"
+       sodipodi:cy="67.463448"
+       sodipodi:rx="185.36299"
+       sodipodi:ry="34.345188"
+       d="m 533.36055,67.463448 a 185.36299,34.345188 0 1 1 -370.72598,0 185.36299,34.345188 0 1 1 370.72598,0 z" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot9289"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(34.345187,-28.284271)"><flowRegion
+         id="flowRegion9291"><rect
+           id="rect9293"
+           width="204.05081"
+           height="93.944191"
+           x="83.842659"
+           y="140.19443" /></flowRegion><flowPara
+         id="flowPara9295">YES</flowPara><flowPara
+         id="flowPara9299">(= 1)</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot9289-3"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(416.56286,-32.912154)"><flowRegion
+         id="flowRegion9291-8"><rect
+           id="rect9293-6"
+           width="204.05081"
+           height="93.944191"
+           x="83.842659"
+           y="140.19443" /></flowRegion><flowPara
+         id="flowPara9295-9">NO</flowPara><flowPara
+         id="flowPara9299-8">(= 0)</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot9289-6"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-55.178381,225.6869)"><flowRegion
+         id="flowRegion9291-6"><rect
+           id="rect9293-2"
+           width="204.05081"
+           height="93.944191"
+           x="83.842659"
+           y="140.19443" /></flowRegion><flowPara
+         id="flowPara9295-3">YES</flowPara><flowPara
+         id="flowPara9299-82" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot9289-6-6"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(387.21102,228.38777)"><flowRegion
+         id="flowRegion9291-6-2"><rect
+           id="rect9293-2-7"
+           width="204.05081"
+           height="93.944191"
+           x="83.842659"
+           y="140.19443" /></flowRegion><flowPara
+         id="flowPara9295-3-5">YES</flowPara><flowPara
+         id="flowPara9299-82-7" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot9289-6-8"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(120.53075,226.59696)"><flowRegion
+         id="flowRegion9291-6-27"><rect
+           id="rect9293-2-8"
+           width="204.05081"
+           height="93.944191"
+           x="83.842659"
+           y="140.19443" /></flowRegion><flowPara
+         id="flowPara9295-3-0">NO</flowPara><flowPara
+         id="flowPara9299-82-2" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot9289-6-8-0"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(546.16125,227.49727)"><flowRegion
+         id="flowRegion9291-6-27-8"><rect
+           id="rect9293-2-8-9"
+           width="204.05081"
+           height="93.944191"
+           x="83.842659"
+           y="140.19443" /></flowRegion><flowPara
+         id="flowPara9295-3-0-2">NO</flowPara><flowPara
+         id="flowPara9299-82-2-8" /></flowRoot>  </g>
+</svg>
