@@ -1,0 +1,154 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl}
+
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amsthm}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage{graphicx}
+\usepackage{epstopdf}
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+\usepackage{todonotes}
+%\usepackage[disable]{todonotes}
+\usepackage{amsthm}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
+
+\title{	
+\normalfont \normalsize 
+\textsc{Ecole Polytechnique de Louvain} \\ [25pt]
+\horrule{0.5pt} \\[0.4cm] 
+\huge LINMA2111 Algorithmes et complexité \\ CM 10
+\horrule{0.5pt} \\[0.4cm]
+}
+
+\author{Mélanie Sedda - Benoît Sluysmans} 
+
+\date{\normalsize\today}
+\begin{document}
+
+\maketitle
+
+
+\underline{Halting problem}:\\
+\textit{Input}: A Matlab code "M.m", an input for this matlab code\\
+\textit{Output}: YES if M(x) halts after a finite time, NO otherwise\\
+
+This is a decision problem, i.e. a problem with output YES or NO. A decision problem is decidable iff it is computable.\\
+
+
+\textit{Theorem (Turing;1936)}: The halting problem for Matlab machines is undecidable.
+
+\textit{Proof}: By contradiction: we assume that there is a Matlab code "Halt.m" solving the halting problem. We build "Diagonal.m", a program wich take as argument another Matlab code "M.m" with a string of char as input.
+
+\begin{algorithm}
+\caption{Diagonal(M)}
+\begin{algorithmic}
+\IF{halt(M,M) = YES \% M halts on input "M.m"}
+	\STATE{while TRUE \% infinite loop}
+\ELSE
+	\STATE{STOP \% if M does not halt on M, then stop}
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+
+What happens if we call Diagonal(Diagonal)?
+\begin{itemize}
+\item If it stops then halt(Diagonal,Diagonal) = YES $\Rightarrow$ infinite loop, does not stop
+\item If it does not stop, then it stops
+\end{itemize}
+$\Rightarrow$ Contradiction\\
+$\Rightarrow$ "Halt.m" does not exist.\\ \qed
+
+This is called a diagonal argument. Why?\\
+We create this array:
+\begin{tabular}{c|ccccc}
+	& $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\hdots$ \\
+  \hline
+ 	M1.m & \textbf{Halt} & NotHalt & NotHalt & Halt & $\hdots$  \\
+ 	M2.m & Halt & \textbf{Halt} & NotHalt & Halt & $\hdots$  \\
+ 	M3.m & NotHalt & NotHalt & \textbf{NotHalt} & Halt & $\hdots$  \\
+ 	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  \\
+\end{tabular}
+
+Where $x_i$ represent all strings of char, and "M.i" represent all codes with string of char as inputs. We have entry(i,j) = Halt iff Mi($x_j$) halts.\\
+
+We now change all entries of the diagonal:\\
+If Mi($x_i$) = "Halt" then Diagonal(i) = "NotHalt" and conversely.\\
+
+In our case, we obtain (Diagonal(1),Diagonal(2),Diagonal(3),...) = ("NotHalt","NotHalt","Halt",...). This row is not in the array, by construction. That means that "Diagonal.m"$\neq$"Mi.m, $\forall i$.\\
+
+Cantor (1891) invented the diagonal argument to prove that $[0,1]$ (or $\mathbb{R}$, etc) is not countable, i.e. it does not exist a surjection $\mathbb{N}\rightarrow [0,1]$. If there exists a surjection $c:\mathbb{N}\rightarrow [0,1]$, it follows that $[0,1] = \{ c_0,c_1,c_2,...\}$.\\
+
+We can now create the array
+\begin{tabular}{c|ccccc}
+	\hline
+ 	$c_0$ & 0. & \textbf{1} & 0 & 2 & $\hdots$  \\
+ 	$c_1$ & 0. & 3 & \textbf{9} & 1 & $\hdots$  \\
+ 	$c_2$ & 0. & 0 & 0 & \textbf{1}& $\hdots$  \\
+ 	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  \\
+\end{tabular}
+
+From which we create a new number $x=0.202...$ ($0\rightarrow 1, 1\rightarrow 2, 2\rightarrow 3, ..., 9\rightarrow 0$). We now see that $x$ is not in the array, by construction $\Rightarrow x \neq c_i ~ \forall i$, which is a contradiction.\\ \qed
+
+What about the decision problems (from integer or string of char to YES or NO)?
+
+\begin{center}
+\begin{tabular}{ccccc}
+	a & b & ... & aa & ...\\
+	0 & 1 & 2 & 3 & ... \\
+	\hline
+	YES & YES & NO & YES & ...\\
+	\hline
+	1 & 1 & 0 & 1 & ...\\
+	\hline
+\end{tabular}
+\end{center}
+
+Where the third row characterizes the decision proble P, and we can create $x_P \in [0,1]$ from the last row: $x_P = 0.1101...$. That means that $\forall x \in [0,1]$, I can create a decision problem. So decision problems are uncountable because in bijection with $[0,1]$.\\
+
+Matlab codes are countable (e.g. string of char, ASCII codes $\Rightarrow$ integer $\in \mathbb{N}$). And every Matlab code can solve at most one decision problem. So most decision problems are undecidable! But Turing's proof is interesting because it provides a specific, interesting decision problem that is undecidable.
+
+
+
+\end{document}
