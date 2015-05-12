@@ -1,9 +1,10 @@
-\part*{CM11}
+\part*{\hl{TEMPORARY - CM11}}
+
 % Hachez Floran
 
-\subsection{Complexity classes}
-\subsubsection{Time}
-Among decidable problems, which one can be solved with a reasonable amount of resource ?
+\section{Complexity classes}
+\subsection{Time}
+Among decidable problems, which one can be solved with a reasonable amount of resource?
 
 We generally consider that the problem in $P$ use a reasonable amount of resources. 
 Where \\
@@ -11,15 +12,16 @@ $P$=\{
 decision problems that can be solved with an algorithm running in 
 $O(n^d)$ time in worst case for some d 
 \}.\\
-This class does not depend of the language (\emph{Python}, \emph{Matlab}, \emph{Turing machine}) we use to code the algorithm.
+This class does not depend of the language (\emph{Python}, \emph{Matlab}, \emph{Turing machine}) we use to code the algorithm.\\
 
-\paragraph{Theorem}
+\begin{theorem}
 There is a decidable problem not in $P$.
-
-\paragraph{Proof} We can use the diagonal argument !\\
-Idea : we enumerate a list of \emph{Matlab} code that solves all problems in P.
+\end{theorem}
+\begin{proof}
+We can use the diagonal argument !\\
+Idea : we enumerate a list of \emph{Matlab} code that solves all problems in $P$.
 So, we enumerate all \emph{Matlab} codes of the sort :
-\begin{lstlisting}
+\begin{lstlisting}[caption=Enumeration of all $P$ problems]
     While flop <= (input size)^d + c
         (any block of code)
     end
@@ -31,46 +33,53 @@ runs in polynomial time.\\
 Let's call this list : $M_1, M_2, ...$
 and let's suppose you enumerate the possible inputs as $1,2,3,4,...$
 
-For the diagonal argument, we create a problem A:\\
-\textbf{Input : }n\\
+For the diagonal argument, we create a problem $A$:\\
+\textbf{Input : }$n$\\
 \textbf{Output : } 
 $\left \{ \begin{tabular}{c}
-Yes if $M_n(n) = No$\\
-No if $M_n(n) = Yes$
+Yes if $M_n(n) = $No\\
+No if $M_n(n) = $Yes
 \end{tabular}
 \right .$
 
 This problem output the inverse of the diagonal of the table $problem \times inputs$ !
 
-This problem A is not in P. Because \textbf{the diagonal is not a row of this table} since
-whatever the row i, we have that $M_i(i) \neq A(i)$ ! This implies that we found a problem A$\notin P$.
+This problem $A$ is not in $P$. Because \textbf{the diagonal is not a row of this table} since
+whatever the row $i$, we have that $M_i(i) \neq A(i)$ ! This implies that we found a problem $A\notin P$.
 
-We can repeat the argument for other classes of complexity as for example for : $EXPTIME$=\{decision problem solved by an algorithm in $O(2^{(input size)^d})$ time\}.
+\end{proof}
+
+We can repeat the argument for other classes of complexity as for example for :\\
+$EXPTIME$=\{decision problem solved by an algorithm in $O(2^{(input size)^d})$ time\}.\\
 Thanks to this, we can create a hierarchy of problems
 
-\subsubsection{Space}
+\subsection{Space}
 We are also interested by the memory complexity. Generally we consider that an algorithm that use a reasonable amount of memory is in $PSPACE$. \\
 $PSPACE$= \{
 decision problems that can be solved by an algorithm consuming memory in $O(n^d)$ for some d \}\\
-For the time complexity, we saw that we can create a hierarchy of time complexity via the \emph{diagonal} arguments and we'll see that we can do the same for the space complexity.
+For the time complexity, we saw that we can create a hierarchy of time complexity via the \emph{diagonal} arguments and we'll see that we can do the same for the space complexity.\\
 
-\paragraph{Theorem} $P \subset PSPACE$ 
-
-\paragraph{Proof}
+\begin{theorem} $P \subset PSPACE$ 
+\end{theorem}
+\begin{proof}
 In $N$ steps of time can can only write N new symbols in memory. \\
 The memory use is $\leq n + N$ where $n$ is the input size.\\
 $\implies$ If  $N \in O(n^d)$ then $n+N\in O(n^d) $ $\forall d \in N$
 
-\paragraph{Theorem} $PSPACE \subset EXPTIME$
-\paragraph{Proof}
+\end{proof}
+
+\begin{theorem} $PSPACE \subset EXPTIME$
+\end{theorem}
+\begin{proof}
 If the \emph{Matlab} machine is twice in the same memory configuration while reaching
 the same instruction in the program then it \textbf{must loop} and never stop.
-If $N$ memory cells used then there are at most ($\#$code line $\times 2^N$) instructions before looping.
+If $N$ memory cells are used then there are at most ($\#$code line $\times 2^N$) instructions before looping.
 
 $\implies$ Since a \emph{Matlab} machine solving a problem in $PSPACE$ must always stop \footnote{it can't loop since it always must return a solution}.
 It must do so before $O(2^{n^d})$ instructions, where space used is $n^d$.
+\end{proof}
 
-\paragraph{Relation betwee $P$, $PSPACE$ and $EXPTIME$}
+\subsection{Relation between $P$, $PSPACE$ and $EXPTIME$}
 There are 3 possibilities since $P \neq PSPACE$ :
 \begin{eqnarray}
 P&=&PSPACE\subsetneq EXPTIME\\
@@ -78,85 +87,95 @@ P&=&PSPACE\subsetneq EXPTIME\\
 \text{or }P&\subsetneq &PSPACE\subsetneq EXPTIME\\
 \end{eqnarray}
 
-The first one is not possible \footnote{it is possible to show that there is a $PSPACE$ program which use $O(2^{n^d})$ instructions}. But we don't know if it's the second or the third one. People "believe" that it is the third one, $P \subsetneq PSPACE \subsetneq EXPTIME$.
+The first one is not possible\footnote{it is possible to show that there is a $PSPACE$ program which use $O(2^{n^d})$ instructions}. But we don't know if it's the second or the third one. People "believe" that it is the third one, $P \subsetneq PSPACE \subsetneq EXPTIME$.
 
-\subsubsection{NP}
-Now let's see another important class of time complexity :
-NP=\{decision problems such that 
-$\exists$ Matlab machine $M(x,y)$ : 
-
-$\left \{ \begin{tabular}{c}
+\subsection{NP}
+Now let's see another important class of time complexity :\\
+\begin{leftbar}
+$NP$=\{decision problems such that 
+$\exists$ \emph{Matlab} machine $M(x,y)$ :\\
+$\quad \left \{ \begin{tabular}{c}
 $M(x,y)$ runs in $O(|x|+|y|^d)$ $\forall d\in N$\\
 $x$ is a Yes-instance \emph{iff} $\exists y : |y|\in O(|x|^k)$ and $M(x,y)$ returns Yes\\
-\end{tabular}\right .$
+\end{tabular}\right .\\
+$\}
+\end{leftbar}
+This $y$ is called a certificate for $x$.
 
-This $y$ is called a certificate for x.
+\begin{leftbar}
+\begin{example} Hamiltonian Graph\\
+\textbf{Input :} $A$ graph $G$\\
+\textbf{Output : }Yes \emph{iff} $G$ is Hamiltonian ($<=> \exists$ Hamiltonian cycle in $G$)\\
+Here we have $x=G$ and $y=$cycle where
+$x$ is Hamiltonian iff $\exists$ cycle y s.t. $y$ is an Hamiltonian cycle in $x$.
+$M(x,y)$ checks that $y$ is Hamiltonian in $x$. 
+\end{example}
+\end{leftbar}
 
-\paragraph{Ex:} Hamiltonian Graph\\
+Since $M(x,y)$ is a polynomial algorithm $=>$ Hamiltonian Graph $\in$ $NP$ and we have that $|y| \in O(|x|^k)$, we have that this problem $\in NP$.\\
 
-\textbf{Input :} A graph G\\
-\textbf{Output : }Yes \emph{iff} G is Hamiltonian ($<=> \exists$ Hamiltonian cycle in G)
-
-Here we have x=G and y=cycle where
-x is Hamiltonian iff $\exists$ cycle y s.t. y is an Hamiltonian cycle in x.
-M(x,y) checks that y is Hamiltonian in x. 
-
-Since M(x,y) is a polynomial algorithm $=>$ Hamiltonian Graph $\in$ NP and we have that $|y| \in O(|x|^k)$, we have that this problem $\in NP$.
-
-\paragraph{NB} We can see the NP problems as problems that are "easy to check" once solved.
-Many natural and practical relevant combinatorial problems are in NP.
-
-\paragraph{Theorem :} $P\subset NP$
-
-\paragraph{Proof :}
-it is trivial for the certificate $y\equiv 0$ e.g. (no certificate needed) "If it's easy to solve, it's easy to check"
-
-\paragraph{Theorem :} $PSPACE \subset NP$
-
-\paragraph{Proof: }
-For a problem in NP s.t. x is a Yes-Instance iff $\exists y$ : $|y|\leq|x|^d$ and  that
-$M(x,y)=Yes$. Where $M(x,y)$ runs in $(|x|+|y|^d)$
+\begin{remark} We can see the $NP$ problems are problems that are \textit{"easy to check"} once solved.
+Many natural and practical relevant combinatorial problems are in $NP$.
+\end{remark}
+\vspace{0.5cm}
+\begin{theorem}$P\subset NP$
+\end{theorem}
+\begin{proof}
+It is trivial for the certificate $y\equiv 0$ e.g. (no certificate needed) \textit{"If it's easy to solve, it's easy to check"}.
+\end{proof}
+\vspace{0.5cm}
+\begin{theorem} $PSPACE \subset NP$
+\end{theorem}
+\begin{proof}
+For a problem in $NP$ s.t. $x$ is a Yes-Instance iff $\exists y$ : $|y|\leq|x|^d$ and  that
+$M(x,y)=$Yes. Where $M(x,y)$ runs in $(|x|+|y|^d)$.
 
 We can have the algorithm (probably not the best time complexity to solve the problem)
-\begin{lstlisting}
+\begin{lstlisting}[caption=$PSPACE \subset NP$ control algorithm]
     for all y=1,2,3...,2^|x|^d
         if M(x,y) = Yes then return Yes
     end
 \end{lstlisting}
 
-Which solve the problem and runs in polynomial space (for each new y we can wipe out the memory and use it again : M(x,y) use polynomial-space $\forall |y| \leq |x|^d$.
-\paragraph{NB :}
+Which solve the problem and runs in polynomial space (for each new y we can wipe out the memory and use it again). $M(x,y)$ use polynomial-space $\forall |y| \leq |x|^d$.
+\end{proof}
+\vspace{0.5cm}
+\begin{remark}
 The Hamiltonian Graph problem $\in PSPACE$ because we can simply write a program that generate all the possible cycle and
 verify if one is an Hamiltonian cycle. This program just keep the current cycle and graph in memory, so the memory require $\in PSPACE$.
-
-\paragraph{} We don't know if $P=NP$ or $P\subsetneq NP$. People believe that $P\subsetneq NP$.\\
+\end{remark}
+\vspace{0.5cm}
+We don't know if $P=NP$ or $P\subsetneq NP$. People believe that $P\subsetneq NP$.\\
 It is one of the most important conjectures in maths!
-
-\paragraph{NB :}
+\\
+\begin{remark}
 We know: if $P\neq NP$ then $NP\neq PSPACE$ thanks to a diagonal argument.
+\end{remark}
 
-\subsection{Reducibility}
-For two problems S and T, we want to say if S is "easier" than T.
-We say S is \textbf{reducible} to T, written $S \leq_p T$, 
+\section{Reducibility}
+For two problems $S$ and $T$, we want to say if $S$ is \textit{"easier"} than $T$.
+We say $S$ is \textbf{reducible} to $T$, written $S \leq_p T$, 
 if $\exists f:N\leftarrow N$, computable in polynomial-time. \\
-s.t x is a Yes-Instance for S \textbf{iff} f(x) is a Yes-instance for T.
-This is called a reduction.
+s.t $x$ is a Yes-Instance for $S$ \textbf{iff} $f(x)$ is a Yes-instance for $T$.
+This is called a reduction.\\
+\textbf{Intuition:} through the function $f$ we show that $S$ is in fact a particular case of $T$.\\
 
-\paragraph{Intuition:} through the function f we show that S is in fact a particular case of T
+\begin{leftbar}
+\begin{example} Reduction between the Clique problem and the Independent Set problem
+\begin{enumerate}
+	\item Clique\\
+\textbf{Input} : Graph $G$, integer $k$\\
+\textbf{Output} : Yes if $\exists$ $k$-clique (clique of at least $k$ nodes) in $G$
+\item Independent set\\
+\textbf{Input} : Graph $G$, integer $k$\\
+\textbf{Output} : Yes if $\exists$ $k$-independent set (set of at least $k$ independent nodes) in $G$
+\end{enumerate}
 
-\subsubsection{Ex : Reduction between the Clique problem and the Independent set problem}
-\paragraph{a)} Clique\\
-\textbf{Input} : Graph G, integer k\\
-\textbf{Output} : Yes if $\exists$ k-clique (clique of at leas k nodes) in G
+We have that Clique $\leq_p$ IndependentSet $\leq_p$ Clique.\\
+Where for the reduction, we use the function $f(G,k) = (\bar{C}, k)$ where the $\bar{C}$, the complement of $G$ : edge $ab \in G$ \emph{iff} $ab\notin \bar{G}$ and nodes($G$)=nodes($\bar{G}$)
+\end{example}
+\end{leftbar}
 
-\paragraph{b)} Independent set\\
-\textbf{Input} : Graph G, integer k\\
-\textbf{Output} : Yes if $\exists$ k-Independent set (set of at leas k independent nodes) in G
-
-\paragraph{} We have that $Clique \leq_p IndependentSet \leq_p Clique$\\
-Where for the reduction, we use the function f(G,k) = ($\bar{C}$, k) where the $\bar{C}$, the complement of G : edge ab$\in$ G \emph{iff} $ab\notin \bar{G}$ and
-nodes(G)=nodes($\bar{G}$)
-
-\textbf{NB} : $Clique \equiv_p IndependentSet$ (equivalent problems for polynomial-time reduction)
-If one is in $P$ then so is the other or $NP$ or $PSPACE$.
+\begin{remark} Clique $\equiv_p$ IndependentSet (equivalent problems for polynomial-time reduction). If one is in $P$ then so is the other or $NP$ or $PSPACE$.
+\end{remark}
 

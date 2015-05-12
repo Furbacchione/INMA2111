@@ -321,7 +321,7 @@ is feasible, with $t_i \leq t_j$, then we can swap $i$ and $j$, and it’s still
 
 \item ($\Leftarrow$) Trivial.
 \end{itemize}
-\QED
+
 \end{proof}
 
 Note that if the jobs are already ordered by increasing deadlines, then checking feasibility of the schedule is done in $\Theta(n)$.
@@ -491,7 +491,7 @@ $a \notin J$
 If $c_b > c_a$ : then the greedy algorithm would have chosen $b$ before $a$ $\Rightarrow b$ would be in $I$. \\
 If $c_a > c_b$ : then $J$ is strictly improved by replacing $b$ with $a$, then impossible case. \\
 It follows that $c_a = c_b$, and consequently we have that $C_I = C_J$.
-\QED
+
 \end{proof}
 
 Time complexity 

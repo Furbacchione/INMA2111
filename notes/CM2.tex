@@ -112,9 +112,7 @@ $\Rightarrow \mathcal{O}(\log n)$
 \end{figure}
 The resulting sorting algorithm is called the HeapSort (Williams, 1964) and has a complexity of $\mathcal{O}(n\log n)$.
 
-\textbf{Remarks}
-\begin{itemize}
-\item The heap may be stored as an array: \\
+\begin{remark} The heap may be stored as an array: \\
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
    \hline
@@ -132,11 +130,13 @@ with the following properties:
 & \text{Father}(T(i)) = T\left( \left\lfloor\dfrac{i}{2}\right\rfloor \right)
 \end{align*}
 $\Rightarrow $ We can thus sort in place!
-
-\item Create a heap from an input can be done in $\mathcal{O}(n)$.
-\item There exist a correspondence between a heap and a priority queue.
-\item The implementation of a data structure often offer trade-offs: one operation can be cheap if another is costly. 
-\end{itemize}
+\end{remark}
+\begin{remark} Create a heap from an input can be done in $\mathcal{O}(n)$.
+\end{remark}
+\begin{remark} There exist a correspondence between a heap and a priority queue.
+\end{remark}
+\begin{remark} The implementation of a data structure often offer trade-offs: one operation can be cheap if another is costly. 
+\end{remark}
 
 \section{Can we do better?}
 
@@ -162,7 +162,7 @@ Label each edge $0$ or $1$ (see Figure \ref{tree6}). Every leaf is uniquely iden
 \label{tree6}
 \end{figure}
 As we cannot uniquely identify $N$ nodes with binary words all of length $< \left\lfloor \log N \right\rfloor$, there is at least one path of length $> \log N$.
-\QED
+
 \end{proof}
 
 \begin{theorem}
@@ -181,7 +181,7 @@ The number of leaves of this tree is $n! = n(n-1)(n-2)...1$. This is the number 
 $\Rightarrow \exists$ one path of length $\log (n!)$ and thus $\log(n!)$ questions. \\
 
 Using the Stirling approximation $n! = \left( \dfrac{n}{e} \right)^n \sqrt{2\pi n}$, we obtain $\log (n!) = n \log n$. We have thus $\Omega (n \log n)$ as worst case complexity.
-\QED
+
 \end{proof}
 
 This last theorem answers our question for the worst case scenario, but can the average-case complexity be better? The following theorems will answer that question.\\
@@ -197,10 +197,10 @@ The average-case complexity of \emph{any} deterministic sorting algorithm using 
 \end{theorem}
 \begin{proof}
 Apply previous theorems on decision tree.
-\QED
+
 \end{proof}
 
-\textbf{Remark} Randomized algorithms cannot be better either.
+\begin{remark} Randomized algorithms cannot be better either. \end{remark}
 
 As we now know, with our current hypothesis, we cannot do better than $\Omega (n\log n)$. But with supplementary knowledge, we can beat the $\Omega (n\log n)$ bound.\\
 
@@ -237,5 +237,5 @@ V(T(i)) & = V(T(i)) - 1
 \text{Creation of U: } \mathcal{O}(k)
 \end{cases} \mathcal{O}(k+n)
 \]
-\textbf{Remark} Often an entry is just a key to satellite data (a file, a picture, a book, etc.). In those cases, Counting Sort is stable: the order of two entries with the same key values is preserved. They are not swapped in the final array W.
+\begin{remark} Often an entry is just a key to satellite data (a file, a picture, a book, etc.). In those cases, Counting Sort is stable: the order of two entries with the same key values is preserved. They are not swapped in the final array W. \end{remark}
 
