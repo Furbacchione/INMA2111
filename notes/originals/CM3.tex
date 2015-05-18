@@ -1,0 +1,268 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{ntheorem}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\theoremstyle{break}
+\newtheorem{theorem}{Theorem}
+\newtheorem{thesis}{Thesis}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\author{Kim Van Den Eeckhaut}
+\begin{document}
+\section*{Divide and conquer}
+How to multiply 2 large integers (of $n$ digits each)?\\
+Elementary method : use the grid method for written multiplication :
+\begin{center}
+\begin{tikzpicture}
+\draw(3,10)--(6,10);
+\draw(3,10)--(3,10.5);
+\draw(3,10.5)--(6,10.5);
+\draw(6,10.5)--(6,10);
+
+\draw(3,10.7)--(6,10.7);
+\draw(3,10.7)--(3,11.2);
+\draw(3,11.2)--(6,11.2);
+\draw(6,11.2)--(6,10.7);
+
+\node at (2.75,10.2) {$\times$};
+
+\draw(1,9.75)--(8,9.75);
+
+\draw(3,9)--(6,9);
+\draw(3,9)--(3,9.5);
+\draw(3,9.5)--(6,9.5);
+\draw(6,9.5)--(6,9);
+
+\draw(2.5,8.3)--(5.5,8.3);
+\draw(2.5,8.3)--(2.5,8.8);
+\draw(2.5,8.8)--(5.5,8.8);
+\draw(5.5,8.8)--(5.5,8.3);
+
+\draw(2,7.6)--(5,7.6);
+\draw(2,7.6)--(2,8.1);
+\draw(2,8.1)--(5,8.1);
+\draw(5,8.1)--(5,7.6);
+
+\draw(1.5,6.9)--(4.5,6.9);
+\draw(1.5,6.9)--(1.5,7.4);
+\draw(1.5,7.4)--(4.5,7.4);
+\draw(4.5,7.4)--(4.5,6.9);
+
+\node at (1.25,7.1) {$+$};
+
+\draw(1,6.65)--(8,6.65);
+
+\node at (4.5,6.4) {$\hdots\hdots\hdots$};
+
+\node at (10,9) { : $\Theta(n^2)$};
+\end{tikzpicture}
+\end{center}
+
+We can do better!\\
+\begin{align*}
+x\times y&=\big(\underbrace{x_0}_{n/2 \text{ digits}}+10^{\left\lfloor n/2\right\rfloor} \underbrace{x_1}_{n/2}\big)\times \big(\underbrace{y_0}_{n/2}+10^{\left\lfloor n/2\right\rfloor} \underbrace{y_1}_{n/2}\big)\\
+&=x_0 \times y_0 + 10^{\left\lfloor n/2\right\rfloor} (x_1 \times y_0 + x_0 \times y_1)+10^{2{\left\lfloor n/2\right\rfloor}}(x_1\times y_1)
+\end{align*}
+\emph{Complexity} : $t_n=4t_{\left\lfloor n/2\right\rfloor}+\Theta(n)$\\
+\emph{Solution} : if we assume $n\approx 2^k$, we have : 
+\begin{align*}
+t_n&=4t_{n/2}+\Theta(n)\\
+&=16t_{n/4}+4 \Theta(n/2)+\Theta(n)\\
+&=64t_{n/8}+\underbrace{16\Theta(n/4)}_{\Theta(4n)}+\underbrace{4 \Theta(n/2)}_{\Theta(2n)}+\underbrace{\Theta(n)}_{\Theta(n)}\\
+&=\hdots\\
+&=2^{2k}\underbrace{t_{n/2^k}}_{\mathcal{O}(1)}+\Theta(\underbrace{(2^{k-1}+2^{k-2}+\hdots+1)}_{2^k-1}n)=\Theta(n^2)
+\end{align*}
+This is not better.\\
+This kind of recurrence is solved by the \emph{master theorem}.\\
+\begin{theorem}[Master]
+For the recurrence $t_n=at_{n/b}+f(n)$ (or $t_{\lfloor n/b \rfloor}$ or $t_{\lceil n/b \rceil}$) : 
+\begin{enumerate}[a)]
+\item If $f(n)\in \mathcal{O}\left(n^{\log_ba-\epsilon}\right)$ for some $\epsilon>0$, then $t_n \in \Theta\left(n^{\log_ba}\right)$;\label{a}
+\item If $f(n)\in \Theta\left(n^{\log_ba}\right)$, then $t_n \in \Theta\left(n^{\log_ba}\log n\right)$; \label{b}
+\item If $f(n)\in \Omega\left(n^{\log_ba+\epsilon}\right)$ for some $\epsilon>0$, $af(n/b)\leq cf(n)$ for some $c<1$ and $n$ is large enough , then $t_n \in \Theta\left( f(n)\right)$.\\
+\end{enumerate}
+\end{theorem}
+
+\subsubsection*{Examples}
+\begin{itemize}
+\item[$\bullet$] $t_n=2t_{n/2}+\Theta(n)$ : $a=2$, $b=2$ and $\log_2 2=1$\\
+By \ref{b}), $f(n)\in \Theta\left(n^{\log_ba}\right)\rightarrow t_n \in \Theta(n\log n)$
+\item $t_n=4t_{n/2}+\Theta(n)$: $a=4$, $b=2$ and $\log_2 4=2$\\
+By \ref{a}), $f(n)=\Theta\left(n^{\log_2 4-1}\right)\rightarrow t_n=\Theta\left(n^{\log_ba}\right)=\Theta\left(n^2\right)$
+\end{itemize}
+
+It is possible to make only 3 multiplications of $\dfrac{n}{2}$-digits numbers.
+\subsubsection*{\texttt{Multiply(x,y)} \textmd{(Karastuba-Ofman, 1962)}}
+\begin{align*}
+x&=x_0+10^{\lfloor n/2 \rfloor}x_1\\
+y&=y_0+10^{\lfloor n/2 \rfloor}y_1\\
+M&=\color{red} (x_0+y_0)\times (x_1+y_1)\\
+x\times y&={\color{red}x_0\times y_0}+10^{\lfloor n/2 \rfloor}(M-x_0\times y_0-x_1\times y_1)+10^{2\lfloor n/2 \rfloor}{\color{red} x_1\times y_1}
+\end{align*}
+\emph{Time complexity} : 
+\begin{align*}
+t_n=3t_{n/2}+\Theta (n) \Rightarrow t_n=\Theta\left(n^{\log_2 3}\right)\approx \Theta\left(n^{1.585}\right)
+\end{align*}
+We can do even better!$\rightarrow$ Schönhage-Strassen (1971) : $\mathcal{O}(n\log(n)\log\log(n))$\\
+
+How can we multiply two $n$-by-$n$ matrices?\\
+Elementary algorithm : $\Theta(n^3)$ elementary operations.\\
+Is block multiplication better?
+\begin{align*}
+&A=\left(\begin{array}{c|c}
+A_{11} & A_{12}\\
+\hline
+A_{21} & A_{22}
+\end{array}\right) \hspace*{2cm} B=\left(\begin{array}{c|c}
+B_{11} & B_{12}\\
+\hline
+B_{21} & B_{22}
+\end{array}\right)\\
+\rightarrow &AB=\begin{pmatrix}
+A_{11}B_{11}+A_{12}B_{21} & A_{11}B_{12}+A_{12}B_{22}\\
+A_{21}B_{11}+A_{22}B_{21} & A_{21}B_{12}+A_{22}B_{22}
+\end{pmatrix}
+\end{align*}
+\emph{Time complexity} : 8 products of $\dfrac{n}{2}$-by-$\dfrac{n}{2}$ matrices.
+\begin{align*}
+t_n=8t_{n/2}+\Theta(n^2)=\Theta\left(n^{\log_2 8}\right)=\Theta\left(n^3\right)
+\end{align*}
+This is not better. We can do it with only 7 products (Strassen's algorithm, 1969) : 
+\begin{align*}
+\left\{\begin{array}{l}
+M_1=(A_{21}+A_{22}-A_{11})(B_{22}-B_{12}+B_{11})\\
+M_2=A_{11}B_{11}\\
+M_3=A_{12}B_{21}\\
+M_4=(A_{11}-A_{21})(B_{22}-B_{12})\\
+M_5=(A_{21}+A_{22})(B_{12}-B_{11})\\
+M_6=(A_{12}-A_{21}+A_{11}-A_{22})B_{22}\\
+M_7=A_{22}
+\end{array}\right. \Rightarrow AB=\begin{pmatrix}
+M_2+M_3 & M_1+M_2+M_5+M_6\\
+M_1+M_2+M_4-M_7 & M_1+M_2+M_4+M_5
+\end{pmatrix}
+\end{align*}
+\emph{Time complexity} : $t_n=7t_{n/2}+\Theta(n^2)=\Theta\left(n^{\log_2 7}\right)=\Theta\left(n^{2.81}\right)$\\
+We can do even better!$\rightarrow$ Coppersmith-Winograd (1981) : $\Theta(n^{2.376})$\\
+Best one? Unknown but $\Omega(n^2)$\\
+
+
+What is the cost of matrix inversion?\\
+Elementary methods : $\Theta(n^3)$
+\begin{theorem}
+Matrix inversion and multiplication have the same complexity
+\end{theorem}
+\begin{proof}
+Let $I(n)$ be the (worst-case) complexity of inversion (i.e. of the best possible algorithm) and let $M(n)$ be the (worst-case) complexity of multiplication (i.e. of the best possible algorithm).\\
+We want to show that $I(n)\in \Theta(M(n))$.
+\begin{enumerate}[a)]
+\item $M(n)\in \mathcal{O}(I(n))$? We reduce multiplication to inversion.\\
+\end{enumerate}
+$$D=\underbrace{\begin{pmatrix}
+I_n & A & 0\\
+0 & I_n & B\\
+0 & 0 & I_n
+\end{pmatrix}}\limits_{3n*3n}
+\rightarrow D^{-1}=\begin{pmatrix}
+I_n & -A & AB\\
+0 & I_n & -B\\
+0 & 0 & I_n
+\end{pmatrix} $$
+\hspace*{2cm}$\rightarrow M(n)=\mathcal{O}(I(3n))$ \hspace*{4cm} $\Rightarrow M(n) \in \mathcal{O}(I(n))$
+\end{proof}
+Since $I(n) \in \mathcal{O}(n^3)$, $I(3n)\in \mathcal{O}(I(n))$. (Because $n$ is multiplied by $27$)\\
+
+($\ast$)  $I(n)\in \mathcal{O}(M(n))$?\\
+
+We reduce inversion to "a few" multiplications.\\
+
+($\ast$)  First assume $A=A^T\succcurlyeq 0$ (symetric, positive-definite).\\
+\begin{center}
+$A=\begin{pmatrix}
+B & C^T\\
+C & D
+\end{pmatrix}$ \hspace*{1cm},\hspace*{1cm}
+\begin{tabular}{l}
+$B=B^T\succcurlyeq 0$\\
+$C=C^T\succcurlyeq 0$
+\end{tabular}
+\end{center}
+$$A^{-1}=\begin{pmatrix}
+B^{-1}+B^{-1}C^TS^{-1}CB^{-1} & -B^{-1}C^TS^{-1}\\
+-S^{-1}CB^{-1} & S^{-1}
+\end{pmatrix}$$
+with $S=$ Schur's Complement $=D-CB^{-1}C^T$\\
+There are:
+\begin{itemize}
+\item 2 inversions: $B^{-1}$, $S^{-1}$ of size $\dfrac{n}{2}$
+\item 4 multiplications: $CB^{-1}$, $C^T (CB^{-1})$, $S^{-1}(CB^{-1})$, $(CB^{-1})^T\left[S^{-1}(CB^{-1})\right]$
+\end{itemize}
+\begin{align*}
+\Rightarrow I(n) &\leq 2I(\dfrac{n}{2})+4M(\dfrac{n}{2})+\Theta(n^2)&\\
+&=2I\left(\dfrac{n}{2}\right)+\Theta(M(n))&\text{(because}n^2\in \mathcal{O}(M(n)))\\
+&=\Theta(M(n))&\text{(Master theorem with } a=b=2)\\
+\end{align*}
+$\Rightarrow I(n)\in \mathcal{O}(M(n))$\\
+
+($\ast$) For general invertible matrices:\\
+\hspace*{2cm} $A^{-1}=\underbrace{(A^TA)^{-1}}\limits_{\succcurlyeq 0}A^T\rightarrow$we can apply the trick to $(A^TA)$. There is one more multiplication but it does not change anything.\\
+
+
+
+\textbf{Another D\&Q algorithm}\\
+\textit{How to find the ith smallest entry of an array?}\\
+\underline{E.g}:
+\begin{itemize}
+\item $i=1$   minimum: $\Theta(n)$
+\item $i=n$   maximum: $\Theta(n)$
+\item $i=\lfloor \dfrac{n}{2}\rfloor$ median: $\mathcal{O}(n\log n)$: sort then read $T(\lfloor \dfrac{n}{2}\rfloor)$
+\end{itemize}
+Can we do better?\\
+\underline{Idea}: Do random Quicksort but save effort by not sorting one of the two subarrays.\\
+
+\underline{Selection (T,i)} \hspace*{3cm} Assumption: all entries are different\\
+
+\hspace*{0.9cm} Pivot := random entry of $T=T(j)$ for random $j\in \lbrace 1,...,n\rbrace$\\
+\hspace*{1.5cm} $T_{low}$:=entries<Pivot\\
+\hspace*{1.5cm} $T_{high}$:=entries>Pivot\\
+\hspace*{1.5cm} If $|T_{low}|$=$i-1$ then Selection(T,i):=Pivot\\
+\hspace*{1.5cm} If $|T_{low}|<i-1$ then Selection(T,i):=Selection($T_{high},i-|T_{low}|-1$)\\
+\hspace*{1.5cm} If $|T_{low}|>i-1$ then Selection(T,i):=Selection($T_{low},i$)\\
+
+(Worst-case) expected time$=t_n$\\
+\begin{align*}
+t_n &\leq \mathbb{E} t_{\max(|T_{low}|,|T_{high}|)}+\Theta (n) & \Theta (n)\rightarrow \text{finding }T_{low},T_{high}\text{ and }|T_{low}|\\
+&=\sum\limits_{k=0}^{n-1}Prob(|T_{low}|=k)t_{\max(k,n-k-1)}+\Theta (n) & \Theta (n)\leq an \text{ (check following theorem)}\\
+&=2\sum\limits_{k=\left\lfloor (n-1)/2\right\rfloor}^{n-1}\dfrac{1}{n}t_k+\Theta (n)&\\
+\end{align*}
+
+Clever way to solve it: guess and check if it is correct (many terms otherwise).\\
+
+\begin{theorem}
+$t_n=\Theta (n)$
+\end{theorem}
+\begin{proof}
+Assume the term $\Theta (n)\leq an$ for $n$ large enough.\\
+Assume $t_n\leq cn$ for some $c>0$ (to be chosen later), all large enough $n$.\\
+Proof by induction: assume it's time for $k\leq n-1$: $t_k\leq c_k$.\\
+Show that it is true for $n$: $t_n\leq c_n$?
+\begin{align*}
+t_n &\leq 2\sum\limits_{k=(n-1)/2}^{n-1}\dfrac{t_k}{n}+an\\
+&\leq 2\sum\limits_{k=(n-1)/2}^{n-1}\dfrac{ck}{n}+an\\
+&=2\dfrac{c}{n}\overbrace{\left[\dfrac{(n-1)(n-2)}{2}-\dfrac{\dfrac{n-1}{2}\left(\dfrac{n-1}{2}-1\right)}{2}\right]}\limits^{\leq \dfrac{3n^2}{8}}+an\\&
+&=\dfrac{3cn}{4}+a_n
+\end{align*}
+which is $\leq cn$ if we choose $c$ such that $\dfrac{3c}{4}+a<c \Rightarrow c>4a$
+\end{proof}
+
+
+\end{document}
