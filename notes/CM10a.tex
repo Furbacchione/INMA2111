@@ -1,0 +1,88 @@
+\colorbox{green}{TEMPORARY - CM10}
+
+\subsection{The Halting problem and diagonal argument}
+\underline{Halting problem}:\\
+\begin{leftbar}
+\textit{Input}: A Matlab code "M.m", an input for this matlab code\\
+\textit{Output}: YES if M(x) halts after a finite time, NO otherwise
+\end{leftbar}
+
+This is a decision problem, i.e. a problem with output YES or NO. A decision problem is decidable iff it is computable.\\
+
+\begin{theorem}(\textbf{Turing, 1936}): The halting problem for Matlab machines is undecidable.
+\end{theorem}
+\begin{proof} By contradiction: we assume that there is a Matlab code "Halt.m" solving the halting problem. We build "Diagonal.m", a program wich take as argument another Matlab code "M.m" with a string of char as input.
+
+\begin{lstlisting}[label={list:c3:select},caption={Diagonal(M)}]
+INPUT : a Matlab Code M taking a string as input
+Diagonal(M)
+    if (Halt(M,M) == YES) % M halts on input "M.m"
+        while (true) {} % infinite loop
+    else
+        stop % if M does not halt on M, then stop
+end if
+\end{lstlisting}
+
+What happens if we call Diagonal(Diagonal)?
+\begin{itemize}
+\item If it stops then halt(Diagonal,Diagonal) = YES $\Rightarrow$ infinite loop, does not stop
+\item If it does not stop, then it stops
+\end{itemize}
+$\Rightarrow$ Contradiction\\
+$\Rightarrow$ "Halt.m" does not exist.
+\end{proof}
+
+This is called a diagonal argument. Why?\\
+We create this array:
+\begin{tabular}{c|ccccc}
+	& $x_1$ & $x_2$ & $x_3$ & $x_4$ & $\hdots$ \\
+  \hline
+ 	M1.m & \textbf{Halt} & NotHalt & NotHalt & Halt & $\hdots$  \\
+ 	M2.m & Halt & \textbf{Halt} & NotHalt & Halt & $\hdots$  \\
+ 	M3.m & NotHalt & NotHalt & \textbf{NotHalt} & Halt & $\hdots$  \\
+ 	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  \\
+\end{tabular}
+
+Where $x_i$ represent all strings of char, and "M.i" represent all codes with string of char as inputs. We have entry(i,j) = Halt iff Mi($x_j$) halts.\\
+
+We now change all entries of the diagonal:\\
+If Mi($x_i$) = "Halt" then Diagonal(i) = "NotHalt" and conversely.\\
+
+In our case, we obtain (Diagonal(1),Diagonal(2),Diagonal(3),...) = ("NotHalt","NotHalt","Halt",...). This row is not in the array, by construction. That means that "Diagonal.m"$\neq$"Mi.m, $\forall i$.\\
+
+Cantor (1891) invented the diagonal argument to prove:
+\begin{theorem}
+$[0,1]$ (or $\mathbb{R}$, etc) is not countable, i.e. it does not exist a surjection $\mathbb{N}\rightarrow [0,1]$. 
+\end{theorem}
+\begin{proof}
+If there exists a surjection $c:\mathbb{N}\rightarrow [0,1]$, it follows that $[0,1] = \{ c_0,c_1,c_2,...\}$.\\
+
+We can now create the array
+\begin{tabular}{c|ccccc}
+	\hline
+ 	$c_0$ & 0. & \textbf{1} & 0 & 2 & $\hdots$  \\
+ 	$c_1$ & 0. & 3 & \textbf{9} & 1 & $\hdots$  \\
+ 	$c_2$ & 0. & 0 & 0 & \textbf{1}& $\hdots$  \\
+ 	$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &  \\
+\end{tabular}
+
+From which we create a new number $x=0.202...$ ($0\rightarrow 1, 1\rightarrow 2, 2\rightarrow 3, ..., 9\rightarrow 0$). We now see that $x$ is not in the array, by construction $\Rightarrow x \neq c_i ~ \forall i$, which is a contradiction.
+\end{proof}
+
+What about the decision problems (from integer or string of char to YES or NO)?
+
+\begin{center}
+\begin{tabular}{ccccc}
+	a & b & ... & aa & ...\\
+	0 & 1 & 2 & 3 & ... \\
+	\hline
+	YES & YES & NO & YES & ...\\
+	\hline
+	1 & 1 & 0 & 1 & ...\\
+	\hline
+\end{tabular}
+\end{center}
+
+Where the third row characterizes the decision proble P, and we can create $x_P \in [0,1]$ from the last row: $x_P = 0.1101...$. That means that $\forall x \in [0,1]$, I can create a decision problem. So decision problems are uncountable because in bijection with $[0,1]$.\\
+
+Matlab codes are countable (e.g. string of char, ASCII codes $\Rightarrow$ integer $\in \mathbb{N}$). And every Matlab code can solve at most one decision problem. So most decision problems are undecidable! But Turing's proof is interesting because it provides a specific, interesting decision problem that is undecidable.

@@ -14,9 +14,6 @@
 \usepackage{amsmath} %Insertion d'equations
 \usepackage{todonotes}
 
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows}
-
 \usepackage{amssymb}
 \usepackage{vmargin} 
 
@@ -43,18 +40,36 @@
 \usepackage{attachfile} 
 \usepackage{longtable}
 
+\usepackage[framemethod=tikz]{mdframed}
+
 \renewcommand*{\thefootnote}{$\langle\arabic{footnote}\rangle$}
 
 \theoremstyle{definition}
-\newtheorem{example}{{\bf Example}}[section]
-\newtheorem{theorem}[example]{{\bf Theorem}}
-\newtheorem{property}[example]{{\bf Property}}
-\newtheorem{definition}[example]{{\bf Definition}}
-\newtheorem{remark}[example]{{\bf Remark}}
-\newtheorem{remarks}[example]{{\bf Remarks}}
-\newtheorem{lemma}[example]{{\bf Lemma}}
-\newtheorem{hypothesis}[example]{{\bf Hypothesis}}
-\newtheorem{exercise}{{\bf Exercise}}[section]
+\newtheorem{example}{{\bf Example}}[chapter]
+\numberwithin{example}{chapter}
+\newtheorem{theorem}{{\bf Theorem}}[chapter]
+\numberwithin{theorem}{chapter}
+% \newtheorem{property}[example]{{\bf Property}}
+\newtheorem{definition}{{\bf Definition}}[chapter]
+\numberwithin{definition}{chapter}
+\newtheorem{lemma}{{\bf Lemma}}[chapter]
+\numberwithin{lemma}{chapter}
+% \newtheorem{hypothesis}[example]{{\bf Hypothesis}}
+% \newtheorem{exercise}{{\bf Exercise}}[section]
+\newtheorem{thesis}{Thesis}[chapter]
+\numberwithin{thesis}{chapter}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}%[chapter]
+% \numberwithin{remark}{chapter}
+
+\surroundwithmdframed[outerlinewidth=2,roundcorner=10pt,leftmargin=0,rightmargin=0,% backgroundcolor=yellow!40,outerlinecolor=blue!70!black,
+innertopmargin=\topskip,splittopskip=\topskip,ntheorem=true]{theorem}
+\surroundwithmdframed[outerlinewidth=2,roundcorner=10pt,leftmargin=0,rightmargin=0,% backgroundcolor=yellow!40,outerlinecolor=blue!70!black,
+innertopmargin=\topskip,splittopskip=\topskip,ntheorem=true]{lemma}
+\surroundwithmdframed[outerlinewidth=2,roundcorner=10pt,leftmargin=0,rightmargin=0,% backgroundcolor=yellow!40,outerlinecolor=blue!70!black,
+innertopmargin=\topskip,splittopskip=\topskip,ntheorem=true]{thesis}
+ 
+
 
 %\setkomafont{part}{\LARGE}
 %\setkomafont{chapter}{\LARGE}
@@ -156,7 +171,7 @@ urlcolor=black
 
 
 % section numbering type
-\renewcommand\thepart{\Alph{part}}
+\renewcommand\thechapter{\Alph{chapter}}
 \renewcommand\thesection{\arabic{section}}
 \renewcommand\thesubsection{\hspace{0.5cm}\alph{subsection}}
 \renewcommand\thesubsubsection{\hspace{1cm}\roman{subsubsection}}
@@ -167,3 +182,11 @@ urlcolor=black
 
 \usepackage{tocstyle}
 \usetocstyle{standard}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,calc,decorations.pathmorphing,decorations.pathreplacing}
+\tikzset{snake arrow/.style=
+{->,
+decorate,
+decoration={snake,amplitude=.4mm,segment length=2mm,post length=1mm}},
+}
