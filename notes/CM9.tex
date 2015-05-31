@@ -9,11 +9,12 @@ What computers can and can't do? \emph{Computability} answers this question.\\
 There are problems no computer or algorithm can ever solve. This is a bad news.\\
 To prove such results, we need a more formal definition of computations.
 
-\paragraph*{Intuitive definition of computing (Turing, 1936)}: a human being is asked a \emph{question} ("input" or "instance", e.g. "123+479=?"), under the form of finitely many symbols from a finite alphabet, written on a sheet of paper.\\
+\begin{description}
+\item[Intuitive definition of computing (Turing, 1936):] a human being is asked a \emph{question} ("input" or "instance", e.g. "123+479=?"), under the form of finitely many symbols from a finite alphabet, written on a sheet of paper.\\
 The (human) computer can write down intermediate results, with unlimited supply of paper, using again symbols from a finite alphabet. The brain follows blindly, non-creatively, a finite list of elementary instructions. The next instruction is decided from the current instruction and the intermediate results currently under scruting by the computer on the paper.\\
 There is an instruction called \texttt{STOP}. At this moment, the answer ("output") is written unambiguously on the paper (e.g."602 is the answer").
 
-\paragraph*{Formal definition of computing} (Turing, 1936): a \emph{Turing machine} (T.M.) is composed of: 
+\item[Formal definition of computing (Turing, 1936):] a \emph{Turing machine} (T.M.) is composed of: 
 \begin{itemize}
 \item[$\bullet$] a \emph{tape}, which is bi-infinite, divided into cells, each being blank or containing a symbol from a finite alphabet $A$ (e.g. $A=\{0,1\}$);
 \item[$\bullet$] a \emph{head}, which reads one cell at a time, can write a new symbol on this cell, shift the tape to the left or right.
@@ -76,8 +77,9 @@ paper&{\color{cyan}\huge{$\leftrightarrow$}}&tape&{\color{cyan}\huge{$\leftright
 (finite) brain&{\color{cyan}\huge{$\leftrightarrow$}}&head&{\color{cyan}\huge{$\leftrightarrow$}}&CPU\\
 instructions&{\color{cyan}\huge{$\leftrightarrow$}}&instructions&{\color{cyan}\huge{$\leftrightarrow$}}&instructions, software\\
 \end{tabular}
+\end{description}
 
-\vspace{0.5cm}
+% \vspace{0.5cm}
 
 A \emph{problem} $f$ is a (partial) mapping.
 \begin{align*}
@@ -93,7 +95,7 @@ A problem $f$ is \emph{computed} or \emph{solved} by a Turing machine $T$ if whe
 
 The problem $f$ is \emph{computable} if it is solved by at least a Turing machine.\\
 
-A more \emph{modern machine}: Matlab machine: a Matlab machine is the code of a Matlab function (without "rand" instruction) running on an ideal infinite-memory computer.\\
+A more \emph{modern machine} (Matlab machine): a Matlab machine is the code of a Matlab function (without "rand" instruction) running on an ideal infinite-memory computer.\\
 
 \begin{theorem}
 A problem is solved by a Turing machine if and only if it is solved by a Matlab machine.
@@ -117,7 +119,7 @@ This is \emph{not} a theorem, because it is not formally defined. It is widely a
 \item[$\bullet$] every time we tried to convert an "obviously algorithmic" procedure into a T.M., we succeeded (with sweat and pain).\\
 \end{itemize} 
 
-It says by instance that the Euclidean division algorithm, "obviously algorithmic", can be solved by a T.M./a Matlab program (although the T.M. is not trivial to find).\\
+It says for instance that the Euclidean division algorithm, "obviously algorithmic", can be solved by a T.M./a Matlab program (although the T.M. is not trivial to find).\\
 Of course in this specific case we can prove formally that this T.M. exists, by constructing it.\\
 
 With Church-Turing thesis, the theorem that Matlab is Turing-equivalent is trivial: Matlab instructions are clearly algorithmic.\\
@@ -132,10 +134,10 @@ Now that we know what a formal algorithm is, we can prove \emph{theorems} about 
 \begin{theorem}[Turing, 1936]
 The following problem is computable: 
 \begin{itemize}
-\item[$\bullet$] \emph{Input}: description of a T.M. $T$ $+$ description of finite word on initial tape, "$w$";
+\item[$\bullet$] \emph{Input}: description of a T.M. ($T$) $+$ description of finite word on initial tape ("$w$");
 \item[$\bullet$] \emph{Output}: \begin{itemize}
-\item If $T$ stops when initial tape is $w$, \emph{the finite content of the tape};
-\item If $t$ never stops, \emph{undefined}.
+\item If $T$ stops when initial tape is $w$: \emph{the finite content of the tape};
+\item If $T$ never stops: \emph{undefined}.
 \end{itemize}
 \end{itemize}
 
@@ -214,7 +216,7 @@ A T.M. solving it is called a "\emph{universal T.M.}".
 \begin{itemize}
 \item[$\bullet$] construct explicitely universal Turing Machine (thank you Alan)
 \item[$\bullet$] OR construct explicitely universal Matlab machine.
-\item[$\bullet$] OR by C-T thesis, simulating T is obviously algorithmic (in theintuitive sense) thus there is a Turing Machine doing it.
+\item[$\bullet$] OR by C-T thesis, simulating T is obviously algorithmic (in the intuitive sense) thus there is a Turing Machine doing it.
 \end{itemize}
 \end{proof}
 
@@ -288,7 +290,7 @@ $\equiv$ Turing's fundamental insight.\\
 
 \subsection{The Harting problem}
 A decision problem is a total mapping: $A^*\rightarrow \{\text{YES,NO}\}$\\
-E.g. "Is number n prime?"\\
+E.g. "Is number $n$ prime?"\\
 A decision problem is decidable if it's computable.\\
 
 \underline{The Harting problem:}\\

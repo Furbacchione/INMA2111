@@ -100,8 +100,10 @@ It is possible to make only 3 multiplications of $\dfrac{n}{2}$-digits numbers.
 \begin{lstlisting}[label={list:c3:Multiply(x,y)},caption=\texttt{Multiply(x,y)} \textmd{(Karastuba-Ofman, 1962)}]
 x=x_0+(10^floor(n/2))*x_1
 y=y_0+(10^floor(n/2))*y_1
-M=(x_0+y_0)*(x_1+y_1)
-x*y={x_0*y_0}+10^(n/2)*(M-x_0*y_0-x_1*y_1)+10^(2(n/2))*x_1*y_1
+M1=(x_0+y_0)*(x_1+y_1)
+M2=x_0*y_0
+M3=x_1*y_1
+x*y=M2+10^(n/2)*(M1-M2-M3)+10^(2(n/2))*M3
 \end{lstlisting}
 
 
@@ -175,8 +177,9 @@ Matrix inversion and multiplication have the same complexity
 Let $I(n)$ be the (worst-case) complexity of inversion (i.e. of the best possible algorithm) and let $M(n)$ be the (worst-case) complexity of multiplication (i.e. of the best possible algorithm).\\
 We want to show that $I(n)\in \Theta(M(n))$.
 \begin{enumerate}% [a)]
-\item $M(n)\in \mathcal{O}(I(n))$? We reduce multiplication to inversion.\\
-\end{enumerate}
+\item $M(n)\in \mathcal{O}(I(n))$?\\
+We reduce multiplication to inversion.\\
+
 $$D=\underbrace{\begin{pmatrix}
 I_n & A & 0\\
 0 & I_n & B\\
@@ -191,11 +194,12 @@ I_n & -A & AB\\
 
 Since $I(n) \in \mathcal{O}(n^3)$, $I(3n)\in \mathcal{O}(I(n))$. (Because $n$ is multiplied by $27$)\\
 
-($\ast$)  $I(n)\in \mathcal{O}(M(n))$?\\
+\item $I(n)\in \mathcal{O}(M(n))$?\\
 
-We reduce inversion to "a few" multiplications.\\
+We reduce inversion to "a few" multiplications.
 
-($\ast$)  First assume $A=A^T\succcurlyeq 0$ (symetric, positive-definite).\\
+\begin{itemize}
+\item  First assume $A=A^T\succcurlyeq 0$ (symetric, positive-definite).\\
 \begin{center}
 $A=\begin{pmatrix}
 B & C^T\\
@@ -218,13 +222,15 @@ There are:
 \end{itemize}
 \begin{align*}
 \Rightarrow I(n) &\leq 2I(\dfrac{n}{2})+4M(\dfrac{n}{2})+\Theta(n^2)&\\
-&=2I\left(\dfrac{n}{2}\right)+\Theta(M(n))&\text{(because}n^2\in \mathcal{O}(M(n)))\\
+&=2I\left(\dfrac{n}{2}\right)+\Theta(M(n))&\text{(because }n^2\in \mathcal{O}(M(n)))\\
 &=\Theta(M(n))&\text{(Master theorem with } a=b=2)\\
 \end{align*}
 $\Rightarrow I(n)\in \mathcal{O}(M(n))$\\
 
-($\ast$) For general invertible matrices:\\
+\item For general invertible matrices:\\
 \hspace*{2cm} $A^{-1}=\underbrace{(A^TA)^{-1}}\limits_{\succcurlyeq 0}A^T\rightarrow$we can apply the trick to $(A^TA)$. There is one more multiplication but it does not change anything.
+\end{itemize}
+\end{enumerate}
 \end{proof}
 
 \section{Random Select algorithm}
@@ -247,19 +253,19 @@ If we make the assumption that all entries are different, we have the following 
 
 \begin{lstlisting}[label={list:c3:select},caption={Selection (T,i)}]
 Selection (T,i) (assumption : all entries are different)
-pivot = random entry of T = T(j) for random $j\in \{1.. n\}$
+pivot = random entry of T = T(j) for random j in (1,2,...,n)
 T_{low} = entries < pivot
 T_{hight} = entries > pivot
-if |T_{low} | = i-1 then Selection (T,i) := pivot
-if |T_{low} | < i-1 then Selection (T,i) := Selection (T_{hight}, i-|t_{low}| -1)
-if |T_{low} | > i-1 then Selection (T,i) := Selection (T_{low}, i)
+if |T_{low}| = i-1 then Selection (T,i) := pivot
+if |T_{low}| < i-1 then Selection (T,i) := Selection (T_{hight}, i-|t_{low}|-1)
+if |T_{low}| > i-1 then Selection (T,i) := Selection (T_{low}, i)
 \end{lstlisting}
 
-(Worst-case) expected time$=t_n$\\
+(Worst-case) expected time$=t_n$
 \begin{align*}
-t_n &\leq \mathbb{E} t_{\max(|T_{low}|,|T_{high}|)}+\Theta (n) & \Theta (n)\rightarrow \text{finding }T_{low},T_{high}\text{ and }|T_{low}|\\
-&=\sum\limits_{k=0}^{n-1}Prob(|T_{low}|=k)t_{\max(k,n-k-1)}+\Theta (n) & \Theta (n)\leq an \text{ (check following theorem)}\\
-&=2\sum\limits_{k=\left\lfloor (n-1)/2\right\rfloor}^{n-1}\dfrac{1}{n}t_k+\Theta (n)&\\
+t_n &\leq \mathbb{E}[t_{\max(|T_{low}|,|T_{high}|)}]+\Theta (n) & \Theta (n)\rightarrow \text{finding }T_{low},T_{high}\text{ and }|T_{low}|\\
+&=\sum\limits_{k=0}^{n-1}P[|T_{low}|=k]t_{\max(k,n-k-1)}+\Theta (n) & \Theta (n)\leq an \text{ (check following theorem)}\\
+&=2\sum\limits_{k=\left\lfloor \frac{n-1}{2}\right\rfloor}^{n-1}\dfrac{1}{n}t_k+\Theta (n)&\\
 \end{align*}
 Clever way to solve it: guess and check if it is correct (many terms otherwise).\\
 
@@ -269,7 +275,7 @@ $t_n=\Theta (n)$
 \begin{proof}
 Assume the term $\Theta (n)\leq an$ for $n$ large enough.\\
 Assume $t_n\leq cn$ for some $c>0$ (to be chosen later), all large enough $n$.\\
-Proof by induction: assume it's time for $k\leq n-1$: $t_k\leq c_k$.\\
+Proof by induction: assume it's true for $k\leq n-1$: $t_k\leq c_k$.\\
 Show that it is true for $n$: $t_n\leq c_n$?
 \begin{align*}
 t_n &\leq 2\sum\limits_{k=(n-1)/2}^{n-1}\dfrac{t_k}{n}+an\\

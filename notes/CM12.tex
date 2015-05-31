@@ -50,15 +50,15 @@ We detail the Turing Machine in Fig \ref{c12:turing machine}.
 \label{c12:turing machine}
 \end{figure}
 
- $\Rightarrow \mathcal{O}\left( \vert x \vert^{2d} \right)$ variables $P_{t,m}$=TRUE if cell m at time t is 1, with t, the time and m, the space. $\mathcal{O}\left( \vert x \vert^{d} \right)$ boolean variables describing the head state $P_{t,s}$=TRUE if and only if Head is in state $s$ at time $t$. $\mathcal{O}\left( \vert x \vert^{d} \right)$ variables $Q_{t,m}$=TRUE if and only if head is reading cell $m$ at time $t$. 
+ $\Rightarrow \mathcal{O}\left( \vert x \vert^{2d} \right)$ variables $P_{t,m}$=TRUE if cell $m$ at time $t$ is 1, with $t$, the time and $m$, the space. $\mathcal{O}\left( \vert x \vert^{d} \right)$ boolean variables describing the head state $P_{t,s}$=TRUE if and only if Head is in state $s$ at time $t$. $\mathcal{O}\left( \vert x \vert^{d} \right)$ variables $Q_{t,m}$=TRUE if and only if head is reading cell $m$ at time $t$. 
  
  We can describe the rules of the Turing Machine by a boolean formula: e.g. $t,m$, the transition $s_1 \longrightarrow s_2$ if we read a $0$. (If $P_{t,s_1}$ and $\neg P_{t,m}$ and $Q_{t,m}$ then $P_{t+1,s_2}$).
  
-(Reminder: " If A then B" $\Leftrightarrow \neg A \vee B)$ 
+(Reminder: "If A then B" $\Leftrightarrow \neg A \vee B)$ 
 
 The whole computation is encoded into a big, but poly-size (and computed in poly-time), boolean formula $\phi_{x,c,M}$ (described by $P_{t,m}$ for $t=0\equiv$ Initial state). 
 
-The question "$\exists ? c: T(x,c)=YES$" (for a given x). 
+The question "$\exists ? c: T(x,c)=YES$" (for a given $x$). 
 
 Amounts: "Are there truth values for the $P_{0,m}$ encoding $c$ such that $\phi_{x,c,T}$=YES ?", with $x$ and $T$ which are given and $c$ that to be found. 
 
@@ -87,7 +87,7 @@ To this day, thousands of interesting problems have been proved NP-complete.
 
 \begin{example}
 \begin{leftbar}
-NP-complete problems: $3$ (possibly negated) variables, related by $1$.
+$3$ (possibly negated) variables, related by $1$.
 \begin{definition}
 3-SAP:
 \begin{itemize}
@@ -106,11 +106,11 @@ NP-complete problems: $3$ (possibly negated) variables, related by $1$.
 \item 3-SAT $\in$ NP: clear
 \item 3-SAT is NP-hard ?, we prove SAT $\leq_p$ 3-SAT
 \end{itemize}
-\end{proof}
 
 The reduction proceeds by transforming in poly-time every boolean formula into the normal form $( \vee \ \ \vee ) \wedge ( \vee \ \ \vee) \wedge \cdots$ using the identities of boolean logic in a systematic way. e.g. : \\
 $(P \wedge Q) \vee R \equiv (P \vee R) \wedge (Q \vee R)$ distribution \\
 $ \neg (P \vee Q) \equiv \neg P \vee \neg Q$ (de Morgan) and More. 
+\end{proof}
 
 3-SAT can help prove that even more problems are NP-complete. 
 
@@ -142,7 +142,7 @@ All pair of nodes are linked except:
 \item $x_i$ with $\neg x_i$
 \end{itemize}
 
-We check, if $\phi$ is satisfiable then it exists k-clique in Graph. Indeed, if $\phi$ satisfiable by: 
+We check, if $\phi$ is satisfiable then it exists k-clique in the graph. Indeed, if $\phi$ satisfiable by: 
 
 \begin{center}
 \begin{tabular}{lll}
@@ -159,7 +159,7 @@ $\neg x_1$ &=TRUE in clause & $1$ \\$\neg x_2$ &=TRUE in clause & $2$ \\ $ x_3$ 
 \label{c12:clique2}
 \end{figure}
 
-If exists k-CLIQUE in a graph then $\phi$ is satifiable.
+If there exists k-CLIQUE in a graph then $\phi$ is satifiable.
  Indeed, we find clique then we can see that the assignment : \\
  
  \begin{center}
@@ -170,7 +170,7 @@ $\neg x_2$ & =& TRUE \\
  $x_3$ & =& TRUE \\
 \end{tabular}
 \end{center}
-(and anything for other variables) makes $\Phi$ true (because well defined and makes one possibly negated ) variable true in every clause.\\
+(and anything for other variables) makes $\Phi$ true (because well defined and makes one possibly negated) variable true in every clause.\\
 \end{itemize}
 \end{proof}
 
@@ -183,5 +183,5 @@ MAX clique:
 \item Output:  Clique of max size
 \end{itemize}
 
-We convert this into a decision problem: CLIQUE and we can run CLIQUE for several k (e.g.by dichotomy )
+We convert this into a decision problem: CLIQUE and we can run CLIQUE for several $k$ (e.g.by dichotomy )
 \end{definition}

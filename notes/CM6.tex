@@ -166,7 +166,7 @@ If we have an optimal solution (for the subproblem $c_{ij}$) that doesn’t use 
 Consequently, a greedy algorithm can be designed to take advantage of that fact. That greedy algorithm is the following :
 \begin{lstlisting}[label={list:c6:activitySelectionGreedy},caption=Pseudo-code of the greedy algorithm for activity selection problem]
 ActivitySelect({ a_1,...,a_n})
-		{a_1 } union ActivitySelect({activities disjoint from a_1})
+	{a_1} union ActivitySelect({activities disjoint from a_1})
 \end{lstlisting}
 The time complexity of this algorithm is 
 \begin{equation*}

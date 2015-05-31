@@ -23,12 +23,12 @@ X_i &=
         0 &\text{ it not }
       \end{aligned}
     \right.\\
-\mathbf{E}[X_i] &= \text{P[person $i$ is hired}] &\text{ fondamental property of indicator variable}
+\mathbb{E}[X_i] &= \text{P[person $i$ is hired}] &\text{ fondamental property of indicator variable}
 \end{align*}
 We want to find
 \begin{align*}
-\mathbf{E}[X] &=  \mathbf{E}[X_1+X_2+\ldots+X_n] & \\
-&=  \mathbf{E}[X_1] + \mathbf{E}[X_2] + \ldots +\mathbf{E}[X_n]  &\text{since the expectation is linear}\\
+\mathbb{E}[X] &=  \mathbb{E}[X_1+X_2+\ldots+X_n] & \\
+&=  \mathbb{E}[X_1] + \mathbb{E}[X_2] + \ldots +\mathbb{E}[X_n]  &\text{since the expectation is linear}\\
 &= \sum_{i=1}^n \text{P[$i$ is hired]} &\\
 &= \sum_{i=1}^n \frac{1}{i} &\text{because the best among $1,2,\ldots,i$ is $i$ with probability $\frac{1}{i}$}\\
 &\approxeq \int_1^n \frac{1}{i}  \, \mathrm{d}i. &\text{continuous problem}\\
@@ -81,12 +81,12 @@ X_{ij} &=
         0 &\text{ it not }
       \end{aligned}
     \right.\\
-\mathbf{E}[X_{ij}] &= \frac{1}{t} \text{ where $t = 365$}\\
+\mathbb{E}[X_{ij}] &= \frac{1}{t} \text{ where $t = 365$}\\
 \sum_{pairs \{i,j\}} X_{i,j} &= X\\
 &= \text{\# of coincidences}\\
 &= \text{\# pairs of people with same birthday}\\
-\mathbf{E}[X] &=  \mathbf{E}[\sum_{i,j} X_{i,j}] \\
-&= \sum_{i,j}  \mathbf{E}[X_{i,j}] \\
+\mathbb{E}[X] &=  \mathbb{E}[\sum_{i,j} X_{i,j}] \\
+&= \sum_{i,j}  \mathbb{E}[X_{i,j}] \\
 &= \frac{n(n-1)}{2} \frac{1}{t} \approxeq \frac{n^2}{2t} \text{ for $n$ persons}
 \end{align*}
-So, if $n = \sqrt{2t}$, then $\mathbf{E}[X] \approxeq 1$, i.e. there exist a fair chance to observe a coincidence. If $t = 365$, $n = \sqrt{2*365} = 25$. Therefore already with $25$ people there is a very good chance that two people were born on the same day, whereas we would expect that more people would be needed.
+So, if $n = \sqrt{2t}$, then $\mathbb{E}[X] \approxeq 1$, i.e. there exist a fair chance to observe a coincidence. If $t = 365$, $n = \sqrt{2*365} = 25$. Therefore already with $25$ people there is a very good chance that two people were born on the same day, whereas we would expect that more people would be needed.

@@ -39,7 +39,7 @@ We can do the same reasoning for the value higher than the pivot and also affirm
 
 A simple drawing (Fig. \ref{fig:c4:deterministicselect}) can easily illustrate this reasoning.
 
-\begin{figure}
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
 \draw (0,0) node {$\bullet$} ;
@@ -109,7 +109,7 @@ t_n &= \underbrace{\Theta (n)}_{\text{split \& median finding}} + \underbrace{t_
 $t_n = \mathcal{O} (n)$
 \end{theorem}
 
-\paragraph*{Proof.}This will be proven by induction. By the hypothesis $f(n) = \Theta (n)$, we know that $f(n) \leq an$ (with $a>0$) for large enough $n$.
+\begin{proof}This will be proven by induction. By the hypothesis $f(n) = \Theta (n)$, we know that $f(n) \leq an$ (with $a>0$) for large enough $n$.
 
 To be $\mathcal{O}(n)$, there must exist $c>0$ such as $t_n \leq cn$.
 
@@ -123,12 +123,12 @@ t_n &\leq t_{\frac{n}{5}} + t_{\frac{7n}{10}} + an\\
 &= c \frac{9n}{10} + an\\
 &\leq cn &\text{if } a\leq \frac{1}{10}c
 \end{align*}
-
+\end{proof}
 
 
 \chapter{Dynamic Programming}
 
-    \section{Computation of combinatorial value}
+\section{Computation of combinatorial value}
 
 
 
@@ -138,15 +138,11 @@ By definition, it can be computed by the following recurrence equation :
 
 \begin{align*}
 \tup{n}{k} &= \tup{n-1}{k-1} + \tup{n-1}{k} & \text{if } 0 < k<n\\
-&=1 & \text{if } k=0 or n\\
+&=1 & \text{if } k=0\text{ or }n\\
 &=0 & \text{otherwise}
 \end{align*}
 
-        
-        
-        \subsection{Naive way : simple recursive algorithm}
-
-
+\subsection{Naive way : simple recursive algorithm}
 
 A way to compute $\tup{n}{k}$ would be to follow the recurrence equation by using the following algorithm (List.\ref{list:c4:naive}).
 
@@ -164,12 +160,7 @@ It can be easily seen that this will lead to an enormous amount of recursive cal
 
 However, as the results are used directly in the computation, the space complexity is $\mathcal{O}(1)$.
 
-
-
-        \subsection{Better way using Pascal's triangle : "bottom-up" approach}
-
-
-
+\subsection{Better way using Pascal's triangle : "bottom-up" approach}
 
 A better way is to store the intermediate result into a table : Pascal's triangle. We can build this table row by row.
 
@@ -185,13 +176,15 @@ This way of solving all the subproblem from the smallest to the final value (the
 
 The "top-down" approach consist of taking the initial recursive algorithm and add a means of storing intermediate results.
 
-We can for example use a table (initially set to $Tab(n,k) = -1 \ \forall n,k$) and take the initial algo but before the computation, check if the result is already in the table. 
+We can for example use a table (initially set to $tab(n,k) = -1 \ \forall n,k$) and take the initial algo but before the computation, check if the result is already in the table. 
 
 This is called recursive algorithm with memory function (or with memoization\footnote{if you doubt about the name, check out \url{http://en.wikipedia.org/wiki/Memoization}}). This technique can be useful for problems where we do not know in advance which subproblems are relevant and need to be computed because it compute exactly what's needed.
 
 The time complexity will be the same as the bottom up approach ($\Theta (nk)$). But as we keep all intermediate result, we have a space complexity of $\Theta (nk)$. 
 
-\subsection{Dynamic programing : Chained matrix products}
+\section{Chained matrix multiplication}
+
+\subsection{Choosing the execution order of the multiplications}
 
 We want to compute the following matrix product : $ M = M_1M_2M_3...M_n$ with $M_i:d_{i-1}\times d_{i}$ matrix.
 
@@ -205,11 +198,11 @@ M&=(M_1M_2)(M_3M_4)\\
 Which order chose to minimise total computation time?
 
 First let's compute the cost of multiplying 2 simple matrix (we neglect \bsc{Strassen} and all advance techniques,... we do the simple naive multiplication):\\
-$Cost(AB) = abc\text{elementary multiplications}$ (if $A=a\times b$, $B=b\times c$ and thus $AB = a\times c$)
+$cost(AB) = abc\text{ elementary multiplications}$ (if $A=a\times b$, $B=b\times c$ and thus $AB = a\times c$)
 
-The order can matter: $Cost((M_1M_2)M_3) = abc+acd = ac(b+d)$ and $Cost(M_1(M_2M_3)) = bcd + abd=bd(c+a)$ (if $M_1=a\times b$, $M_2=b\times c$ and $M_3 = c\times d$).
+The order can matter: $cost((M_1M_2)M_3) = abc+acd = ac(b+d)$ and $cost(M_1(M_2M_3)) = bcd + abd=bd(c+a)$ (if $M_1=a\times b$, $M_2=b\times c$ and $M_3 = c\times d$).
 
-How many possible orders for multiplying n matrices?
+How many possible orders for multiplying $n$ matrices?
 The answer is $C_n = n^{th}$\bsc{Catalan} number
 (from Eugène \bsc{Catalan}\footnote{\url{http://en.wikipedia.org/wiki/Eug\%C3\%A8ne_Charles_Catalan}}: 1814-1894 Belgium).
 
@@ -242,7 +235,7 @@ $f^2(z)-f(z)+z = 0$
 $f(z)=\frac{1+- \sqrt{1-4z}}{2}$
 
 Taylor : $\sqrt{1-4z}  = 1-2z-2z^2-...$
-=> $f(z) = \frac{1}{2}(1-\sqrt{1-4z})$ to have positive Taylor coeff for f(z)
+=> $f(z) = \frac{1}{2}(1-\sqrt{1-4z})$ to have positive Taylor coeff for $f(z)$
 \end{proof}
 
 \begin{theorem}

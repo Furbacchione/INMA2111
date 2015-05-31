@@ -1,34 +1,31 @@
 \colorbox{green}{TEMPORARY - CM5}
 
-\section{Chained matrix multiplication}
-
-Let us now see how we can improve chained matrix multiplication.\\
-Let's say we have $n$ matrices $M_1,..., M_n$ and the dimension of the $i$-th matrix $M_i$ is $d_{i-1} \times d_i$. We saw that the naive cost of the product $AB$ (with $A$ being an $a \times b$ matrix and $B$ an $b \times c$ matrix) is $abc$.\\ 
-
-We showed that the number of possible orders is Catalan's number (approximately $\frac{4^n}{n\sqrt{n}}$) and brute force is thus clearly not an option.
-
+%Let us now see how we can improve chained matrix multiplication.\\
+%Let's say we have $n$ matrices $M_1,..., M_n$ and the dimension of the $i$-th matrix $M_i$ is $d_{i-1} \times d_i$. We saw that the naive cost of the product $AB$ (with $A$ being an $a \times b$ matrix and $B$ an $b \times c$ matrix) is $abc$.\\ 
+%
+%We showed that the number of possible orders is Catalan's number (approximately $\frac{4^n}{n\sqrt{n}}$) and brute force is thus clearly not an option.
 
 \subsection{Divide and conquer approach} 
 
-Let us define Cost$[i,j]$ as the best cost to multiply $M_i,...,M_j$. We divide with respect to the top bracketing $(M_i,...,M_k)(M_{k+1},...,M_j)$ ; then we can further define Cost$[i,j]$ as 
+Let us define $cost[i,j]$ as the best cost to multiply $M_i,...,M_j$. We divide with respect to the top bracketing $(M_i,...,M_k)(M_{k+1},...,M_j)$ ; then we can further define $cost[i,j]$ as 
 \begin{equation}
- \text{Cost}[i,j] = \begin{cases} 
+ cost[i,j] = \begin{cases} 
  	0 & \text{ if } i=j \\
- 	\min_k \text{Cost}[i,k] + \text{Cost}[k,j] + d_{i-1}d_kd_j & \text{ otherwise}
+ 	\min_k cost[i,k] + cost[k,j] + d_{i-1}d_kd_j & \text{ otherwise}
  \end{cases}
  \label{eq1}
 \end{equation}
-By this definition, every leaf of the recursion tree of Cost$[1,n]$ correspond to one order of multiplication of $M_1,...,M_n$. This means that the number of leaves is equal to Catalan's number and thus that this approach has a time complexity of $\Omega  (\frac{4^n}{n\sqrt{n}})$... This approach gives the same results as the brute force. 
-\\ \\
+By this definition, every leaf of the recursion tree of $cost[1,n]$ correspond to one order of multiplication of $M_1,...,M_n$. This means that the number of leaves is equal to Catalan's number and thus that this approach has a time complexity of $\Omega  (\frac{4^n}{n\sqrt{n}})$... This approach gives the same results as the brute force.\\
+
 This is wasteful because intermediate results are recomputed over and over again in the recursion tree: the subproblems are overlapping.
 
 \subsection{Dynamical programming approach}
 
-Within this new approach, Cost$[i,j]$ is a table, where the entry $C[i,j]$ is the optimal number of operations for multiplying matrices $i,i+1,...j-1,j$. Indeed, $i\leq j$.
+Within this new approach, $cost[i,j]$ is a table, where the entry $C[i,j]$ is the optimal number of operations for multiplying matrices $i,i+1,...j-1,j$. Indeed, $i\leq j$.
 %\\ \\
 %\textcolor{red}{Here there is a table to show}
 \\ \\
-This table is filled diagonal by diagonal (starting from the main diagonal then going up) using Equation (\ref{eq1}). The time to compute Cost$[i,j]$ is $\Theta (j-i)$ and the time to fill in the table is thus 
+This table is filled diagonal by diagonal (starting from the main diagonal then going up) using Equation (\ref{eq1}). The time to compute $cost[i,j]$ is $\Theta (j-i)$ and the time to fill in the table is thus 
 \begin{align*}
 \text{Fill in time} & = \sum_{i=1}^n \sum_{j=i}^n \Theta (j-i) \\
 & = \sum_{i=1}^n \sum_{k=0}^{n-i} \Theta (k) = \sum_{i=1}^n \Theta ( (ni)^2) \\
@@ -40,11 +37,14 @@ Note that fill in the table is a "bottom-up" approach while a recursive algorith
 
 \section{When can dynamical programming be used for optimisation problem?}
 
+\subsection{Principles}
+
 There are two principles to take into account:
 
-\paragraph{Optimality principle} For any optimal structure (like a list, a tree, etc.) answering the problem, the substructures (sublists, etc.) are optimal for a subproblem (a problem with smaller instances). 
-
-\paragraph{Subproblems are overlapping} Divide and conquer is wasteful because it computes many times the same subproblem.
+\begin{description}
+\item[Optimality principle] For any optimal structure (like a list, a tree, etc.) answering the problem, the substructures (sublists, etc.) are optimal for a subproblem (a problem with smaller instances). 
+\item[Subproblems are overlapping] Divide and conquer is wasteful because it computes many times the same subproblem.
+\end{description}
 
 \subsection{Exemples}
 

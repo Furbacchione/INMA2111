@@ -157,10 +157,8 @@ Suppose you want to check that $A\cdot B=C$, with $A$, $B$ and $C$ $n\times n$ m
 	\end{itemize}
 \vspace{0.5cm}
 
-\section{Las Vegas Algorithms}
+\section{Las Vegas Algorithms - Eight Queens problem}
 Another sort of algorithms are those that provide a correct answer always, but with random execution time. They are called Las Vegas algorithm. E.g., Random QuickSort, Random selection/Median, ...
-
-\subsection{Eight Queens problem}
 
 Let us see a Las Vegas algorithm for the Eight Queens problem: how to place 8 queens in a chessboard in mutually non-attacking positions, i.e.
 \begin{itemize}
@@ -169,7 +167,7 @@ Let us see a Las Vegas algorithm for the Eight Queens problem: how to place 8 qu
 	\item no two queens in the same diagonal;
 \end{itemize}
 
-\subsubsection{Brute force solution}
+\subsection{Brute force solution}
 Explore systematically the tree of possibilities, \textbf{backtracking} when you reach a dead-end:
 \begin{itemize}
 	\item place a queen on the first row;
@@ -178,7 +176,7 @@ Explore systematically the tree of possibilities, \textbf{backtracking} when you
 	\item $\vdots$
 	\item avoiding same diagonal-positions.
 \end{itemize}
-\subsubsection{The random 8 queens algorithm makes random choices}
+\subsection{The random 8 queens algorithm makes random choices}
 \begin{itemize}
 	\item random column for the $1^{st}$ queen (in $1^{st}$ row);
 	\item random column for the $2^{nd}$ queen (but $\neq$ from the first one and among the valid squares for diagonals)
@@ -190,7 +188,7 @@ If there is no more solution to place a new queen, we repeat \textbf{from scratc
 
 
 \begin{align*}
-\E\left( \text{time success}\right)&=\underbrace{\text{Time}_{\text{in case of Success}}}_{\substack{\text{time to fill in the chessboard }\\\text{ for the final solution}}} + \left[\frac{1}{P[Success]}-1\right]\cdot \text{ Time}_{\text{in case of failure}}
+\E\left[ \text{time success}\right]&=\underbrace{\text{Time}_{\text{in case of Success}}}_{\substack{\text{time to fill in the chessboard }\\\text{ for the final solution}}} + \left[\frac{1}{P[Success]}-1\right]\cdot \text{ Time}_{\text{in case of failure}}
 \end{align*}
 \begin{align*}
 \text{because } \frac{1}{P\left[success\right]}&=\E\left[\text{number of runs to get a success}\right]=\E\left[\text{number of failure}\right]
@@ -199,7 +197,7 @@ If there is no more solution to place a new queen, we repeat \textbf{from scratc
 
 Thus we have \footnote{The 6 in the equation comes from the fact that on average we have 5 or 6 queen placement in a failure}
 \begin{align*}
-\E\left( \text{time success}\right)&=8+(\frac{1}{0,129...}-1)\cdot 6 \text{ queen placements}\\
+\E\left([\text{time success}\right]&=8+(\frac{1}{0,129...}-1)\cdot 6 \text{ queen placements}\\
 &\approx 50\text{ or }60\text{ queen placements}
 \end{align*}
 
