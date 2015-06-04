@@ -67,17 +67,17 @@ A heap is a tree with the following properties:
 \item essentially binary complete (only the last level may be incomplete - as it is filled from left to right)
 \item $\text{entry}(x) \leq \text{entry}(\text{father}(x)) \; \forall \; \text{node} \; x \neq \text{root}$
 \end{itemize}
-An example of a heap is shown in Figure \ref{tree1}.
+An example of a heap is shown in Figure \ref{cm2:tree1}.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.5]{images/CM2/tree1.eps}
 \caption{Example of a heap}
-\label{tree1}
+\label{cm2:tree1}
 \end{figure}
 
 \subsubsection{Insert} 
-To insert a new node into the heap, add it to the last level in the first free position and swap it with its father until the heap is properly re-established. \newline
+To insert a new node into the heap (Fig.\ref{cm2:tree2_3}), add it to the last level in the first free position and swap it with its father until the heap is properly re-established. \newline
 $\Rightarrow \mathcal{O}(\log n)$\\
 
 \begin{figure}[htbp]
@@ -87,10 +87,10 @@ $\Rightarrow \mathcal{O}(\log n)$\\
 \subfloat[]{
 \includegraphics[width=0.45\textwidth]{images/CM2/tree3.eps}}
 \caption{A heap before/after adding one element}
-\label{tree2_3}
+\label{cm2:tree2_3}
 \end{figure}
 
-\subsubsection{Extract Max} To extract the maximal node from the heap, one needs to:
+\subsubsection{Extract Max} To extract the maximal node from the heap (Fig.\ref{cm2:tree4-5}), one needs to:
 \begin{enumerate}
 \item Swap root (the max entry) with last entry
 \item Remove the max entry
@@ -108,8 +108,11 @@ $\Rightarrow \mathcal{O}(\log n)$
 \includegraphics[width=0.45\textwidth]{images/CM2/tree5.eps}
 }
 \caption{A heap before/after removing the largest entry}
-\label{tree4-5}
+\label{cm2:tree4-5}
 \end{figure}
+
+\subsubsection{Resulting Algorithm}
+
 The resulting sorting algorithm is called the HeapSort (Williams, 1964) and has a complexity of $\mathcal{O}(n\log n)$.
 
 \begin{remark} The heap may be stored as an array: \\
