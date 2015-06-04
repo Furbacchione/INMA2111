@@ -100,7 +100,7 @@ It is possible to make only 3 multiplications of $\dfrac{n}{2}$-digits numbers.
 \begin{lstlisting}[label={list:c3:Multiply(x,y)},caption=\texttt{Multiply(x,y)} \textmd{(Karastuba-Ofman, 1962)}]
 x=x_0+(10^floor(n/2))*x_1
 y=y_0+(10^floor(n/2))*y_1
-M1=(x_0+y_0)*(x_1+y_1)
+M1=(x_0+x_1)*(y_0+y_1)
 M2=x_0*y_0
 M3=x_1*y_1
 x*y=M2+10^(n/2)*(M1-M2-M3)+10^(2(n/2))*M3
