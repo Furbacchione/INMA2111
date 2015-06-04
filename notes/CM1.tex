@@ -202,7 +202,7 @@ T_left = [T(i) : i <= n/2]
 T_right = [T(i) : i > n/2]
 mergesort T_left
 mergesort T_right
-T = [T_left T_right]
+T = merge(T_left,T_right) % Theta(n) operations
 \end{lstlisting}
 
 Time of merge is $\Theta(n)$, so we have the recurrence equation: 
