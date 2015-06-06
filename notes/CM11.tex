@@ -80,14 +80,14 @@ It must do so before $O(2^{n^d})$ instructions, where space used is $n^d$.
 \end{proof}
 
 \subsection{Relation between $P$, $PSPACE$ and $EXPTIME$}
-There are 3 possibilities since $P \neq PSPACE$ :
+There are 3 possibilities since $P \neq EXPTIME$ :
 \begin{eqnarray}
 P&=&PSPACE\subsetneq EXPTIME\\
 \text{or }P&\subsetneq &PSPACE= EXPTIME\\
 \text{or }P&\subsetneq &PSPACE\subsetneq EXPTIME\\
 \end{eqnarray}
 
-The first one is not possible\footnote{it is possible to show that there is a $PSPACE$ program which use $O(2^{n^d})$ instructions}. But we don't know if it's the second or the third one. People "believe" that it is the third one, $P \subsetneq PSPACE \subsetneq EXPTIME$.
+We don't know which one it is, but people "believe" that it is the third one, $P \subsetneq PSPACE \subsetneq EXPTIME$.
 
 \subsection{NP}
 Now let's see another important class of time complexity :\\
@@ -124,14 +124,14 @@ Many natural and practical relevant combinatorial problems are in $NP$.
 It is trivial for the certificate $y\equiv 0$ e.g. (no certificate needed) \textit{"If it's easy to solve, it's easy to check"}.
 \end{proof}
 \vspace{0.5cm}
-\begin{theorem} $PSPACE \subset NP$
+\begin{theorem} $NP \subset PSPACE$
 \end{theorem}
 \begin{proof}
 For a problem in $NP$ s.t. $x$ is a Yes-Instance iff $\exists y$ : $|y|\leq|x|^d$ and  that
 $M(x,y)=$Yes. Where $M(x,y)$ runs in $(|x|+|y|^d)$.
 
 We can have the algorithm (probably not the best time complexity to solve the problem)
-\begin{lstlisting}[caption=$PSPACE \subset NP$ control algorithm]
+\begin{lstlisting}[caption=$NP \subset PSPACE$ control algorithm]
     for all y=1,2,3...,2^|x|^d
         if M(x,y) = Yes then return Yes
     end
