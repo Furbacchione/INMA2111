@@ -28,8 +28,8 @@ Within this new approach, $cost[i,j]$ is a table, where the entry $C[i,j]$ is th
 This table is filled diagonal by diagonal (starting from the main diagonal then going up) using Equation (\ref{eq1}). The time to compute $cost[i,j]$ is $\Theta (j-i)$ and the time to fill in the table is thus 
 \begin{align*}
 \text{Fill in time} & = \sum_{i=1}^n \sum_{j=i}^n \Theta (j-i) \\
-& = \sum_{i=1}^n \sum_{k=0}^{n-i} \Theta (k) = \sum_{i=1}^n \Theta ( (ni)^2) \\
-& = \sum_k^{n-1} \Theta (k^2) = \Theta (n^3) \leq \Omega (4^n)
+& = \sum_{i=1}^n \sum_{k=0}^{n-i} \Theta (k) = \sum_{i=1}^n \Theta ( (n-i)^2) \\
+& = \sum_{k=0}^{n-1} \Theta (k^2) = \Theta (n^3) \leq \Omega (4^n)
 \end{align*} 
 This is clealry better than the complexity we had before!
 \\ \\
