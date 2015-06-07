@@ -33,7 +33,7 @@ This table is filled diagonal by diagonal (starting from the main diagonal then 
 \end{align*} 
 This is clealry better than the complexity we had before!
 \\ \\
-Note that fill in the table is a "bottom-up" approach while a recursive algorithm combined with a memory function (some memorization) is a "top-down" approach.
+Note that fill in the table is a "bottom-up" approach while a recursive algorithm combined with a memory function (some memoization) is a "top-down" approach.
 
 \section{When can dynamical programming be used for optimisation problem?}
 
@@ -75,7 +75,7 @@ Since we are interessed in:
 \end{itemize}
 we need to compute Value$(n,V)$. But before computing Value$(n,V)$ we need to compute Value$(i,j)$ for all $i \leq n$ and $j \leq V$. Also, we need $\mathcal{O}(1)$ operation to compute one entry. We can thus deduce that the complexity of the algorithm is $\mathcal{O}(nV)$.
 \\ \\
-As some entries may never be needed to compute Value(Solution), it is a recursive function with memorization (a top-down approach may be useful).
+As some entries may never be needed to compute Value(Solution), it is a recursive function with memoization (a top-down approach may be useful).
 
 \subsubsection{Longuest common subsequence}
 
