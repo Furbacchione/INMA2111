@@ -1,5 +1,3 @@
-\colorbox{green}{TEMPORARY - CM4}
-
 \section{Deterministic Select}
 
 In the previous part, we determine the Random Select algorithm in which we can find the $i^{th}$ smallest entry of an array T in $\Theta (n)$ (worst-case expected time). This algorithm was based on a variance of the quick sort.
@@ -109,7 +107,7 @@ t_n &= \underbrace{\Theta (n)}_{\text{split \& median finding}} + \underbrace{t_
 $t_n = \mathcal{O} (n)$
 \end{theorem}
 
-\begin{proof}This will be proven by induction. By the hypothesis $f(n) = \Theta (n)$, we know that $f(n) \leq an$ (with $a>0$) for large enough $n$.
+\begin{proof} This will be proven by induction. By the hypothesis $f(n) = \Theta (n)$, we know that $f(n) \leq an$ (with $a>0$) for large enough $n$.
 
 To be $\mathcal{O}(n)$, there must exist $c>0$ such as $t_n \leq cn$.
 
@@ -125,12 +123,9 @@ t_n &\leq t_{\frac{n}{5}} + t_{\frac{7n}{10}} + an\\
 \end{align*}
 \end{proof}
 
-
 \chapter{Dynamic Programming}
 
 \section{Computation of combinatorial value}
-
-
 
 The goal is to compute the following combinatorial value  $$\tup{n}{k} = \frac{n!}{k!(n-k)!}$$
 
@@ -144,7 +139,7 @@ By definition, it can be computed by the following recurrence equation :
 
 \subsection{Naive way : simple recursive algorithm}
 
-A way to compute $\tup{n}{k}$ would be to follow the recurrence equation by using the following algorithm (List.\ref{list:c4:naive}).
+A way to compute $\tup{n}{k}$ would be to follow the recurrence equation by using the following algorithm (Code \ref{list:c4:naive}).
 
 \begin{lstlisting}[label={list:c4:naive},caption=Pseudo-code of the naive algorithm for the combinatorial]
 C(n,k) :
@@ -203,7 +198,7 @@ $cost(AB) = abc\text{ elementary multiplications}$ (if $A=a\times b$, $B=b\times
 The order can matter: $cost((M_1M_2)M_3) = abc+acd = ac(b+d)$ and $cost(M_1(M_2M_3)) = bcd + abd=bd(c+a)$ (if $M_1=a\times b$, $M_2=b\times c$ and $M_3 = c\times d$).
 
 How many possible orders for multiplying $n$ matrices?
-The answer is $C_n = n^{th}$\bsc{Catalan} number
+The answer is $C_n = n^{th}$ \bsc{Catalan} number
 (from Eugène \bsc{Catalan}\footnote{\url{http://en.wikipedia.org/wiki/Eug\%C3\%A8ne_Charles_Catalan}}: 1814-1894 Belgium).
 
 %%% mouais...
@@ -219,8 +214,6 @@ C_n &= \sum_{i=1}^{n-1} C_iC_{n-i} = \sum_{i=0}^{n}C_iC_{n-i}
 \begin{proof} A simple proof of it can be made by looking at the following possibilities of decomposition of the product $M_1M_2..M_n$: 
 $$\underbrace{(M_1)}_{C_1}\underbrace{(M_2..M_n)}_{C_{n-1}} || \underbrace{(M_1M_2)}_{C_2}\underbrace{(M_3..M_n)}_{C_{n-2}}|| ...|| \underbrace{(M_1..M_i)}_{C_i}\underbrace{(M_{i+1}..M_n)}_{C_{n-i}}|| ...|| \underbrace{(M_1..M_{n-1})}_{C_{n-1}}\underbrace{(M_n)}_{C_1}$$
 \end{proof}
-
-
 
 \begin{theorem}
 $C_n = \frac{1}{n} \tup{2n-2}{n-1}$
@@ -263,8 +256,7 @@ This implies that $$C_n = \frac{1}{n}\tup{2n-2}{n-1}$$
 Newton binomial formula works also for $n\not\in \mathbb{N}$ : $$(x+y)^n = \sum_{i\geq 0} \tup{n}{i} x^i y^{n-i}$$
 \end{theorem}
 
-With \bsc{Stirling}'s approximation (
-$n! \approx \left(\frac{n}{e}\right)^n \sqrt{2\pi n}$) we can obtain a more practical approximation of the order : 
+With \bsc{Stirling}'s approximation ($n! \approx \left(\frac{n}{e}\right)^n \sqrt{2\pi n}$) we can obtain a more practical approximation of the order : 
 \begin{align*}
 C_n &= \frac{1}{n}\tup{2n-2}{n-1}\\
 &= \frac{1}{n} \frac{(2n-2)!}{(n-1)!(n-1)!}\\

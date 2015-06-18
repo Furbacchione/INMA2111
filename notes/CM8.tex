@@ -1,5 +1,3 @@
-\colorbox{green}{TEMPORARY - CM8}
-
 However, this approach converges quite slowly: the accuracy, measured by the standard deviation, is $\sim \frac{1}{\sqrt{n}}$. We would need a lot of needles...
 
 \subsection[Another way to compute  \texorpdfstring{$\pi$}{pi}]{Another way to compute $\pi$}
@@ -184,9 +182,6 @@ Explore systematically the tree of possibilities, \textbf{backtracking} when you
 \end{itemize}
 If there is no more solution to place a new queen, we repeat \textbf{from scratch} $=$ no memory of previous attempt (it is the difference with the backtracking solution). We can compute that 
 
-% \underbrace{....}_{\substack{\text{Some long text that}\\\text{should be multiline}}}
-
-
 \begin{align*}
 \E\left[ \text{time success}\right]&=\underbrace{\text{Time}_{\text{in case of Success}}}_{\substack{\text{time to fill in the chessboard }\\\text{ for the final solution}}} + \left[\frac{1}{P[Success]}-1\right]\cdot \text{ Time}_{\text{in case of failure}}
 \end{align*}
@@ -194,12 +189,12 @@ If there is no more solution to place a new queen, we repeat \textbf{from scratc
 \text{because } \frac{1}{P\left[success\right]}&=\E\left[\text{number of runs to get a success}\right]=\E\left[\text{number of failure}\right]
 \end{align*}
 
-
 Thus we have \footnote{The 6 in the equation comes from the fact that on average we have 5 or 6 queen placement in a failure}
 \begin{align*}
 \E\left([\text{time success}\right]&=8+(\frac{1}{0,129...}-1)\cdot 6 \text{ queen placements}\\
 &\approx 50\text{ or }60\text{ queen placements}
 \end{align*}
+\textcolor{red}{where does the 0,129 come from?}
 
 whereas the backtracking solution will get a success after 155 queen placements.\\
 

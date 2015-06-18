@@ -1,7 +1,5 @@
 \chapter{Divide and Conquer}
 
-\colorbox{green}{TEMPORARY - CM3}
-
 \section{Multiplication of 2 large integers}
 How to multiply 2 large integers (of $n$ digits each)?\\
 Elementary method : use the grid method for written multiplication :
@@ -234,7 +232,7 @@ $\Rightarrow I(n)\in \mathcal{O}(M(n))$\\
 \end{proof}
 
 \section{Random Select algorithm}
-\textit{How to find the ith smallest entry of an array?}
+\textit{How to find the i-th smallest entry of an array?}
 \begin{example}
 \begin{leftbar}
 First possible algorithm:
@@ -281,7 +279,7 @@ Show that it is true for $n$: $t_n\leq c_n$?
 t_n &\leq 2\sum\limits_{k=(n-1)/2}^{n-1}\dfrac{t_k}{n}+an\\
 &\leq 2\sum\limits_{k=(n-1)/2}^{n-1}\dfrac{ck}{n}+an\\
 &=2\dfrac{c}{n}\overbrace{\left[\dfrac{(n-1)(n-2)}{2}-\dfrac{\dfrac{n-1}{2}\left(\dfrac{n-1}{2}-1\right)}{2}\right]}\limits^{\leq \dfrac{3n^2}{8}}+an\\
-&=\dfrac{3cn}{4}+a_n
+&=\dfrac{3cn}{4}+an
 \end{align*}
 which is $\leq cn$ if we choose $c$ such that $\dfrac{3c}{4}+a<c \Rightarrow c>4a$
 \end{proof}
